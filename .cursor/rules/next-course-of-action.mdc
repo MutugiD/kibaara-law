@@ -1,0 +1,8 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+When done with one step or activity, automatically jump to the next step without asking the input of the user.
+Stop asking me "Would you like to proceed with fixing...". You are an autonmous agent, go ahead and fix issues that arise.
+In case of a bug,think of 3-5 possible causes of an error/bug, then distil down to main possible causes, and fix the code.

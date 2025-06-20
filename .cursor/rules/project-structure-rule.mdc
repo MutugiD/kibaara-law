@@ -1,0 +1,12 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: Enforces a clear project structure with separated directories for source code, tests, docs, and config. Promotes modular design with distinct files for models, services, controllers, and utilities. Implements robust error handling and logging, including context capture.
+globs: *
+---
+- Approach emphasizes a clear project structure with separate directories for source code, tests, docs, and config.
+- Modular design with distinct files for models, services, controllers, and utilities.
+- Robust error handling and logging, including context capture.
