@@ -15,8 +15,24 @@
         "case_number": "Not specified",
         "date": "Not specified"
       },
-      "description": "The appellate court reviewed the trial court's award of damages, indicating a progression from trial to appellate court.",
-      "confidence": "High"
+      "description": "The appellate court reviewed the findings of a trial court regarding the award of damages.",
+      "confidence": "Medium"
+    },
+    {
+      "title": "Civil Appeal 193 of 2017",
+      "appellate_court": {
+        "court": "Court of Appeal",
+        "case_number": "Civil Appeal 193 of 2017",
+        "date": "Not specified",
+        "url": "https://kenyalaw.org/caselaw/cases/view/253591/"
+      },
+      "trial_reference": {
+        "court": "High Court",
+        "case_number": "Succession Cause no. 66 of 2014 and Succession Cause no. 7 of 1996",
+        "date": "Not specified"
+      },
+      "description": "The appeal is based on two succession causes initially handled by the trial court.",
+      "confidence": "Medium"
     },
     {
       "title": "Civil Appeal 12 of 2022",
@@ -31,43 +47,11 @@
         "case_number": "Mutomo PMCC NO. E007 OF 2022",
         "date": "8th June 2022"
       },
-      "description": "This appeal was from a judgment delivered by the Senior Resident Magistrate, showing a clear progression from trial to appellate court.",
+      "description": "The appeal was from a judgment delivered by the Senior Resident Magistrate.",
       "confidence": "High"
     },
     {
-      "title": "Civil Appeal 193 of 2017",
-      "appellate_court": {
-        "court": "High Court",
-        "case_number": "Civil Appeal 193 of 2017",
-        "date": "Not specified",
-        "url": "https://kenyalaw.org/caselaw/cases/view/253591/"
-      },
-      "trial_reference": {
-        "court": "High Court",
-        "case_number": "Succession Cause no. 66 of 2014 and Succession Cause no. 7 of 1996",
-        "date": "Not specified"
-      },
-      "description": "The appeal is based on two succession causes, indicating a progression from trial to appellate court.",
-      "confidence": "Medium"
-    },
-    {
-      "title": "Civil Appeal 21 of 2018",
-      "appellate_court": {
-        "court": "High Court",
-        "case_number": "Civil Appeal 21 of 2018",
-        "date": "Not specified",
-        "url": "https://kenyalaw.org/caselaw/cases/view/185689/"
-      },
-      "trial_reference": {
-        "court": "Children's Court",
-        "case_number": "Not specified",
-        "date": "21st February, 2018"
-      },
-      "description": "The appellant sought to set aside the judgment of the Children's Court, showing a progression from trial to appellate court.",
-      "confidence": "High"
-    },
-    {
-      "title": "Mwangi v Republic (Criminal Appeal 48 of 2019)",
+      "title": "Mwangi v Republic (Criminal Appeal 48 of 2019) [2023]",
       "appellate_court": {
         "court": "High Court",
         "case_number": "Criminal Appeal 48 of 2019",
@@ -79,8 +63,24 @@
         "case_number": "Not specified",
         "date": "Not specified"
       },
-      "description": "The appellant was charged with defilement, and the case progressed from the Magistrate's Court to the High Court.",
+      "description": "The appellant was charged with defilement and appealed the trial court's decision.",
       "confidence": "Medium"
+    },
+    {
+      "title": "Ogori v Nyamira County Assembly & 7 others",
+      "appellate_court": {
+        "court": "High Court",
+        "case_number": "Not specified",
+        "date": "2024-12-16",
+        "url": "https://new.kenyalaw.org/akn/ke/judgment/kehc/2024/16281/eng@2024-12-16"
+      },
+      "trial_reference": {
+        "court": "Not specified",
+        "case_number": "Not specified",
+        "date": "4th November 2024"
+      },
+      "description": "The ruling references an earlier decision, indicating a progression from a lower court.",
+      "confidence": "Low"
     }
   ],
   "filtered_cases_list": [
@@ -97,8 +97,24 @@
         "case_number": "Not specified",
         "date": "Not specified"
       },
-      "description": "The appellate court reviewed the trial court's award of damages, indicating a progression from trial to appellate court.",
-      "confidence": "High"
+      "description": "The appellate court reviewed the findings of a trial court regarding the award of damages.",
+      "confidence": "Medium"
+    },
+    {
+      "title": "Civil Appeal 193 of 2017",
+      "appellate_court": {
+        "court": "Court of Appeal",
+        "case_number": "Civil Appeal 193 of 2017",
+        "date": "Not specified",
+        "url": "https://kenyalaw.org/caselaw/cases/view/253591/"
+      },
+      "trial_reference": {
+        "court": "High Court",
+        "case_number": "Succession Cause no. 66 of 2014 and Succession Cause no. 7 of 1996",
+        "date": "Not specified"
+      },
+      "description": "The appeal is based on two succession causes initially handled by the trial court.",
+      "confidence": "Medium"
     },
     {
       "title": "Civil Appeal 12 of 2022",
@@ -113,43 +129,11 @@
         "case_number": "Mutomo PMCC NO. E007 OF 2022",
         "date": "8th June 2022"
       },
-      "description": "This appeal was from a judgment delivered by the Senior Resident Magistrate, showing a clear progression from trial to appellate court.",
+      "description": "The appeal was from a judgment delivered by the Senior Resident Magistrate.",
       "confidence": "High"
     },
     {
-      "title": "Civil Appeal 193 of 2017",
-      "appellate_court": {
-        "court": "High Court",
-        "case_number": "Civil Appeal 193 of 2017",
-        "date": "Not specified",
-        "url": "https://kenyalaw.org/caselaw/cases/view/253591/"
-      },
-      "trial_reference": {
-        "court": "High Court",
-        "case_number": "Succession Cause no. 66 of 2014 and Succession Cause no. 7 of 1996",
-        "date": "Not specified"
-      },
-      "description": "The appeal is based on two succession causes, indicating a progression from trial to appellate court.",
-      "confidence": "Medium"
-    },
-    {
-      "title": "Civil Appeal 21 of 2018",
-      "appellate_court": {
-        "court": "High Court",
-        "case_number": "Civil Appeal 21 of 2018",
-        "date": "Not specified",
-        "url": "https://kenyalaw.org/caselaw/cases/view/185689/"
-      },
-      "trial_reference": {
-        "court": "Children's Court",
-        "case_number": "Not specified",
-        "date": "21st February, 2018"
-      },
-      "description": "The appellant sought to set aside the judgment of the Children's Court, showing a progression from trial to appellate court.",
-      "confidence": "High"
-    },
-    {
-      "title": "Mwangi v Republic (Criminal Appeal 48 of 2019)",
+      "title": "Mwangi v Republic (Criminal Appeal 48 of 2019) [2023]",
       "appellate_court": {
         "court": "High Court",
         "case_number": "Criminal Appeal 48 of 2019",
@@ -161,9 +145,25 @@
         "case_number": "Not specified",
         "date": "Not specified"
       },
-      "description": "The appellant was charged with defilement, and the case progressed from the Magistrate's Court to the High Court.",
+      "description": "The appellant was charged with defilement and appealed the trial court's decision.",
       "confidence": "Medium"
+    },
+    {
+      "title": "Ogori v Nyamira County Assembly & 7 others",
+      "appellate_court": {
+        "court": "High Court",
+        "case_number": "Not specified",
+        "date": "2024-12-16",
+        "url": "https://new.kenyalaw.org/akn/ke/judgment/kehc/2024/16281/eng@2024-12-16"
+      },
+      "trial_reference": {
+        "court": "Not specified",
+        "case_number": "Not specified",
+        "date": "4th November 2024"
+      },
+      "description": "The ruling references an earlier decision, indicating a progression from a lower court.",
+      "confidence": "Low"
     }
   ],
-  "timestamp": "2025-06-21T13:01:08.687330"
+  "timestamp": "2025-06-21T17:16:59.606854"
 }

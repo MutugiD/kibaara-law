@@ -3,7 +3,7 @@ PROCESSED PDF CONTENT
 
 Original PDF: data/raw/Civil_Appeal_232_of_2016_-_Nairobi_194677_with_metadata.pdf
 Case Title: Civil_Appeal_232_of_2016_-_Nairobi_194677_with_metadata
-Processing Date: 2025-06-21 13:05:03
+Processing Date: 2025-06-21 17:18:24
 
 FULL CLEANED TEXT
 =================

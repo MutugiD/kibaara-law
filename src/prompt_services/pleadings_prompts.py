@@ -29,7 +29,7 @@ class PleadingsPrompts:
             Formatted prompt for comprehensive pleadings extraction
         """
         return f"""
-You are a legal expert analyzing a Kenyan court case. Please extract ALL pleadings and claims raised by each party in the following case:
+You are a senior legal expert specializing in Kenyan law, tasked with extracting comprehensive pleadings and claims from a court case. Your analysis must be extremely detailed, accurate, and relevant to the specific case at hand.
 
 CASE TITLE: {case_title}
 
@@ -39,76 +39,99 @@ PDF CONTENT:
 REQUIRED COMPREHENSIVE ANALYSIS:
 
 1. **PARTIES IDENTIFICATION**:
-   - Plaintiff/Appellant: [Full name and details]
-   - Defendant/Respondent: [Full name and details]
-   - Any other parties involved: [Names and roles]
-   - Legal representatives: [Lawyers/advocates involved]
+   - Plaintiff/Appellant: [Full name, capacity, and any relevant details]
+   - Defendant/Respondent: [Full name, capacity, and any relevant details]
+   - Any other parties involved: [Names, roles, and relationships]
+   - Legal representatives: [Lawyers/advocates with their specific roles]
+   - Any corporate entities: [Company details if applicable]
 
 2. **DETAILED PLEADINGS BY PLAINTIFF/APPELLANT**:
-   - Primary claims: [List ALL claims with specific details]
-   - Legal grounds: [Specific legal principles and statutes cited]
-   - Relief sought: [Exact relief requested]
-   - Evidence presented: [All evidence mentioned, even minor details]
-   - Arguments made: [Complete arguments, including procedural points]
+   - Primary claims: [List ALL claims with specific factual details]
+   - Legal grounds: [Specific legal principles, statutes, and constitutional provisions cited]
+   - Relief sought: [Exact relief requested with specific amounts if applicable]
+   - Evidence presented: [All evidence mentioned with specific details]
+   - Arguments made: [Complete arguments including procedural and substantive points]
    - Any counter-arguments to defendant's position: [If any]
-   - Specific amounts claimed: [Exact monetary amounts if any]
-   - Time periods involved: [Any relevant time periods]
+   - Specific amounts claimed: [Exact monetary amounts with breakdown if any]
+   - Time periods involved: [Any relevant time periods and dates]
+   - Contract terms: [If contract dispute, specific terms in issue]
+   - Property details: [If property involved, specific property details]
 
 3. **DETAILED PLEADINGS BY DEFENDANT/RESPONDENT**:
-   - Primary defenses: [List ALL defenses with specific details]
-   - Legal grounds: [Specific legal principles and statutes cited]
-   - Counter-claims: [If any counter-claims were made]
-   - Evidence presented: [All evidence mentioned, even minor details]
-   - Arguments made: [Complete arguments, including procedural points]
+   - Primary defenses: [List ALL defenses with specific factual details]
+   - Legal grounds: [Specific legal principles, statutes, and constitutional provisions cited]
+   - Counter-claims: [If any counter-claims were made with details]
+   - Evidence presented: [All evidence mentioned with specific details]
+   - Arguments made: [Complete arguments including procedural and substantive points]
    - Any challenges to plaintiff's position: [If any]
    - Specific amounts disputed: [Exact amounts if any]
    - Alternative relief sought: [If any]
+   - Contract terms: [If contract dispute, specific terms in issue]
+   - Property details: [If property involved, specific property details]
 
 4. **PROCEDURAL PLEADINGS**:
-   - Preliminary objections: [Any procedural objections raised]
-   - Jurisdictional issues: [If any jurisdiction challenges]
-   - Admissibility of evidence: [Any evidence admissibility challenges]
-   - Service of process: [Any service-related issues]
-   - Time limitations: [Any statute of limitations arguments]
+   - Preliminary objections: [Any procedural objections raised with specific grounds]
+   - Jurisdictional issues: [If any jurisdiction challenges with legal basis]
+   - Admissibility of evidence: [Any evidence admissibility challenges with specific reasons]
+   - Service of process: [Any service-related issues with specific details]
+   - Time limitations: [Any statute of limitations arguments with specific dates]
    - Venue challenges: [If any venue-related issues]
    - Joinder applications: [If any party joinder issues]
+   - Amendment applications: [Any applications to amend pleadings]
+   - Discovery issues: [Any discovery-related pleadings]
 
-5. **MINOR DETAILS AND NUANCES**:
-   - Specific dates mentioned: [All relevant dates]
-   - Amounts claimed: [Exact monetary amounts if any]
-   - Specific documents referenced: [All documents mentioned]
-   - Witness statements: [Any witness evidence]
-   - Expert opinions: [If any expert evidence]
-   - Affidavits filed: [Any affidavits mentioned]
-   - Exhibits attached: [Any exhibits referenced]
-   - Any other minor pleadings or claims: [Catch-all for anything missed]
+5. **FACTUAL BACKGROUND AND CONTEXT**:
+   - Chronological sequence of events: [Detailed timeline of relevant events]
+   - Key factual disputes: [Specific factual issues in contention]
+   - Background circumstances: [Context that led to the dispute]
+   - Any prior proceedings: [Previous court actions if any]
+   - Settlement attempts: [Any settlement negotiations mentioned]
+   - Expert opinions: [If any expert evidence or opinions]
+   - Witness statements: [Any witness evidence with specific details]
 
 6. **LEGAL CITATIONS AND REFERENCES**:
-   - Statutes cited: [All statutory provisions]
-   - Case law references: [All precedent cases]
-   - Constitutional provisions: [If any constitutional issues]
+   - Statutes cited: [All statutory provisions with section numbers]
+   - Case law references: [All precedent cases with citations]
+   - Constitutional provisions: [If any constitutional issues with specific articles]
    - International law: [If any international law references]
    - Legal principles: [All legal doctrines mentioned]
+   - Regulatory provisions: [Any regulations or rules cited]
 
 7. **EVIDENCE AND DOCUMENTATION**:
-   - Documentary evidence: [All documents mentioned]
-   - Physical evidence: [Any physical evidence]
-   - Electronic evidence: [Any digital evidence]
-   - Expert reports: [Any expert reports]
-   - Witness statements: [All witness evidence]
-   - Affidavits: [All affidavits mentioned]
+   - Documentary evidence: [All documents mentioned with specific details]
+   - Physical evidence: [Any physical evidence with descriptions]
+   - Electronic evidence: [Any digital evidence with details]
+   - Expert reports: [Any expert reports with specific findings]
+   - Witness statements: [All witness evidence with specific content]
+   - Affidavits: [All affidavits mentioned with key points]
+   - Exhibits: [All exhibits with specific descriptions]
+   - Photographs: [Any photographs with descriptions]
+   - Financial records: [Any financial documentation]
+
+8. **SPECIFIC LEGAL ISSUES**:
+   - Constitutional issues: [Any constitutional rights or violations alleged]
+   - Human rights issues: [Any human rights violations claimed]
+   - Administrative law issues: [If administrative action challenged]
+   - Contract law issues: [Specific contract terms and breaches]
+   - Tort law issues: [Specific tort claims and elements]
+   - Property law issues: [Specific property rights and disputes]
+   - Employment law issues: [If employment dispute, specific employment terms]
 
 IMPORTANT INSTRUCTIONS:
-- Extract EVERY detail, no matter how minor
-- Include specific legal citations and references
-- Preserve exact language where possible
+- Extract EVERY detail, no matter how minor - accuracy is paramount
+- Include specific legal citations and references with exact section numbers
+- Preserve exact language where possible, especially for legal terms
 - Do not summarize - provide comprehensive details
 - If information is not available, state "Not mentioned in document"
 - Focus on factual pleadings rather than legal conclusions
 - Include all procedural aspects mentioned
 - Capture all evidence and documentation referenced
+- Pay special attention to amounts, dates, and specific factual details
+- Ensure all legal citations are accurate and complete
+- Highlight any novel or unusual legal arguments
+- Note any procedural irregularities or unusual aspects
 
-RESPOND WITH A DETAILED STRUCTURED ANALYSIS COVERING ALL SECTIONS ABOVE:
+RESPOND WITH A DETAILED STRUCTURED ANALYSIS COVERING ALL SECTIONS ABOVE. BE EXTREMELY THOROUGH AND ACCURATE:
 """
 
     @staticmethod

@@ -29,7 +29,7 @@ class RulingsPrompts:
             Formatted prompt for trial court decision extraction
         """
         return f"""
-You are a legal expert analyzing a Kenyan trial court decision. Please extract ALL details about the trial court's decision in the following case:
+You are a senior legal expert specializing in Kenyan law, tasked with extracting comprehensive trial court decision details. Your analysis must be extremely detailed, accurate, and relevant to the specific case at hand.
 
 CASE TITLE: {case_title}
 
@@ -39,74 +39,108 @@ PDF CONTENT:
 REQUIRED COMPREHENSIVE ANALYSIS:
 
 1. **TRIAL COURT INFORMATION**:
-   - Court name: [Exact court name]
-   - Judge(s): [Full names of presiding judge(s)]
+   - Court name: [Exact court name and location]
+   - Judge(s): [Full names of presiding judge(s) with titles]
    - Case number: [Trial court case number]
-   - Date of decision: [Exact date]
+   - Date of decision: [Exact date of judgment/ruling]
    - Location: [Court location if mentioned]
    - Court level: [Magistrate's Court, High Court, etc.]
+   - Type of proceeding: [Trial, hearing, application, etc.]
 
 2. **DETAILED FINDINGS OF FACT**:
    - Background facts: [All factual findings, even minor details]
-   - Evidence evaluation: [How court evaluated each piece of evidence]
-   - Witness credibility: [Any credibility assessments]
-   - Documentary evidence: [How documents were treated]
-   - Expert evidence: [If any expert evidence was considered]
-   - Any factual disputes resolved: [Specific factual determinations]
-   - Key factual findings: [Main factual conclusions]
+   - Evidence evaluation: [How court evaluated each piece of evidence with specific reasoning]
+   - Witness credibility: [Any credibility assessments with specific reasons]
+   - Documentary evidence: [How documents were treated and evaluated]
+   - Expert evidence: [If any expert evidence was considered and how]
+   - Any factual disputes resolved: [Specific factual determinations with reasoning]
+   - Key factual findings: [Main factual conclusions with supporting evidence]
+   - Contested facts: [Facts that were in dispute and how resolved]
+   - Undisputed facts: [Facts that were agreed upon]
 
 3. **LEGAL ANALYSIS AND REASONING**:
-   - Legal principles applied: [All legal principles cited]
-   - Statute interpretation: [How statutes were interpreted]
-   - Case law references: [All precedent cases cited]
-   - Legal reasoning: [Step-by-step legal analysis]
-   - Burden of proof: [How burden was applied]
+   - Legal principles applied: [All legal principles cited with specific applications]
+   - Statute interpretation: [How statutes were interpreted with specific sections]
+   - Case law references: [All precedent cases cited with specific holdings]
+   - Legal reasoning: [Step-by-step legal analysis with logical progression]
+   - Burden of proof: [How burden was applied and to which party]
    - Standard of proof: [Standard applied (balance of probabilities, beyond reasonable doubt, etc.)]
-   - Legal conclusions: [Main legal conclusions reached]
+   - Legal conclusions: [Main legal conclusions reached with reasoning]
+   - Constitutional analysis: [If any constitutional issues were considered]
+   - Policy considerations: [Any policy reasons mentioned in the decision]
 
 4. **DETAILED DECISION AND ORDERS**:
-   - Primary decision: [Main outcome]
-   - Specific orders made: [All orders, even minor ones]
-   - Relief granted/denied: [Exact relief awarded]
-   - Costs awarded: [If any costs were awarded]
-   - Time limits: [Any time-related orders]
+   - Primary decision: [Main outcome with specific details]
+   - Specific orders made: [All orders, even minor ones, with exact wording]
+   - Relief granted/denied: [Exact relief awarded with specific amounts]
+   - Costs awarded: [If any costs were awarded with specific amounts]
+   - Time limits: [Any time-related orders with specific dates]
    - Conditions imposed: [Any conditions attached to orders]
-   - Interest awarded: [If any interest was awarded]
-   - Damages: [If any damages were awarded]
+   - Interest awarded: [If any interest was awarded with rates]
+   - Damages: [If any damages were awarded with breakdown]
+   - Declaratory relief: [Any declaratory orders made]
+   - Injunctive relief: [Any injunctions granted or denied]
 
-5. **MINOR DETAILS AND PROCEDURAL ASPECTS**:
-   - Procedural history: [All procedural steps taken]
-   - Adjournments: [Any adjournments and reasons]
-   - Applications made: [Any interlocutory applications]
-   - Rulings on objections: [How objections were handled]
-   - Any procedural irregularities: [If any were noted]
-   - Specific dates mentioned: [All relevant dates]
-   - Any other minor details: [Catch-all for anything missed]
+5. **PROCEDURAL ASPECTS AND HISTORY**:
+   - Procedural history: [All procedural steps taken with dates]
+   - Adjournments: [Any adjournments and specific reasons]
+   - Applications made: [Any interlocutory applications with outcomes]
+   - Rulings on objections: [How objections were handled with specific rulings]
+   - Any procedural irregularities: [If any were noted and how addressed]
+   - Specific dates mentioned: [All relevant dates throughout proceedings]
+   - Evidence rulings: [Any rulings on admissibility of evidence]
+   - Amendment applications: [Any applications to amend pleadings]
 
 6. **REASONS FOR DECISION**:
-   - Primary reasons: [Main reasons for the decision]
+   - Primary reasons: [Main reasons for the decision with detailed explanation]
    - Alternative grounds: [If decision could have been based on other grounds]
-   - Dissenting opinions: [If any judge disagreed]
+   - Dissenting opinions: [If any judge disagreed with specific reasons]
    - Concurring opinions: [If any judge agreed for different reasons]
    - Policy considerations: [Any policy reasons mentioned]
    - Public interest factors: [If any public interest considerations]
+   - Legal precedent considerations: [How precedent influenced the decision]
+   - Factual basis for each conclusion: [Specific facts supporting each conclusion]
 
 7. **LEGAL PRINCIPLES ESTABLISHED**:
    - New legal principles: [If any new principles established]
-   - Interpretation of statutes: [How statutes were interpreted]
-   - Application of precedent: [How precedent cases were applied]
-   - Legal doctrines applied: [Any legal doctrines used]
+   - Interpretation of statutes: [How statutes were interpreted with specific sections]
+   - Application of precedent: [How precedent cases were applied or distinguished]
+   - Legal doctrines applied: [Any legal doctrines used with specific applications]
+   - Constitutional principles: [If any constitutional principles were applied]
+   - Common law principles: [Any common law principles applied]
+
+8. **SPECIFIC LEGAL ISSUES ADDRESSED**:
+   - Contract law issues: [If contract dispute, specific contract law principles]
+   - Tort law issues: [If tort claim, specific tort elements and analysis]
+   - Property law issues: [If property dispute, specific property law principles]
+   - Constitutional issues: [If constitutional issues, specific constitutional analysis]
+   - Administrative law issues: [If administrative action, specific administrative law]
+   - Employment law issues: [If employment dispute, specific employment law]
+   - Family law issues: [If family dispute, specific family law principles]
+
+9. **EVIDENCE ANALYSIS**:
+   - Documentary evidence: [How each document was evaluated]
+   - Witness evidence: [How each witness was assessed]
+   - Expert evidence: [How expert evidence was treated]
+   - Physical evidence: [How physical evidence was evaluated]
+   - Electronic evidence: [How electronic evidence was handled]
+   - Circumstantial evidence: [How circumstantial evidence was weighed]
 
 IMPORTANT INSTRUCTIONS:
-- Extract EVERY detail, no matter how minor
-- Include specific legal citations and references
-- Preserve exact language where possible
+- Extract EVERY detail, no matter how minor - accuracy is paramount
+- Include specific legal citations and references with exact section numbers
+- Preserve exact language where possible, especially for legal terms and orders
 - Do not summarize - provide comprehensive details
 - If information is not available, state "Not mentioned in document"
 - Focus on the trial court's reasoning and findings
 - Include all procedural aspects and orders
+- Pay special attention to amounts, dates, and specific factual details
+- Ensure all legal citations are accurate and complete
+- Highlight any novel or unusual legal reasoning
+- Note any procedural irregularities or unusual aspects
+- Provide specific factual basis for each legal conclusion
 
-RESPOND WITH A DETAILED STRUCTURED ANALYSIS COVERING ALL SECTIONS ABOVE:
+RESPOND WITH A DETAILED STRUCTURED ANALYSIS COVERING ALL SECTIONS ABOVE. BE EXTREMELY THOROUGH AND ACCURATE:
 """
 
     @staticmethod
@@ -122,7 +156,7 @@ RESPOND WITH A DETAILED STRUCTURED ANALYSIS COVERING ALL SECTIONS ABOVE:
             Formatted prompt for appellate court ruling extraction
         """
         return f"""
-You are a legal expert analyzing a Kenyan appellate court ruling. Please extract ALL details about the appellate court's decision in the following case:
+You are a senior legal expert specializing in Kenyan law, tasked with extracting comprehensive appellate court ruling details. Your analysis must be extremely detailed, accurate, and relevant to the specific case at hand.
 
 CASE TITLE: {case_title}
 
@@ -133,82 +167,127 @@ REQUIRED COMPREHENSIVE ANALYSIS:
 
 1. **APPELLATE COURT INFORMATION**:
    - Court name: [Exact court name (Court of Appeal, Supreme Court, etc.)]
-   - Judge(s): [Full names of all appellate judges]
+   - Judge(s): [Full names of all appellate judges with titles]
    - Case number: [Appellate court case number]
-   - Date of decision: [Exact date]
+   - Date of decision: [Exact date of appellate decision]
    - Location: [Court location if mentioned]
    - Court level: [Appellate court level]
+   - Type of appeal: [Civil appeal, criminal appeal, constitutional petition, etc.]
 
 2. **GROUNDS OF APPEAL**:
-   - Primary grounds: [All grounds of appeal raised]
-   - Legal basis for each ground: [Specific legal principles]
-   - Arguments presented: [Complete arguments for each ground]
-   - Evidence relied upon: [Evidence cited in support]
-   - Any new evidence: [If any new evidence was introduced]
-   - Procedural grounds: [Any procedural challenges]
-   - Constitutional grounds: [If any constitutional issues]
+   - Primary grounds: [All grounds of appeal raised with specific details]
+   - Legal basis for each ground: [Specific legal principles and statutory provisions]
+   - Arguments presented: [Complete arguments for each ground with specific reasoning]
+   - Evidence relied upon: [Evidence cited in support of each ground]
+   - Any new evidence: [If any new evidence was introduced with details]
+   - Procedural grounds: [Any procedural challenges with specific allegations]
+   - Constitutional grounds: [If any constitutional issues with specific articles]
+   - Factual grounds: [Any challenges to factual findings]
+   - Legal grounds: [Any challenges to legal conclusions]
 
 3. **APPELLATE COURT'S ANALYSIS**:
-   - Standard of review: [Standard applied by appellate court]
-   - Deference to trial court: [How much deference given to trial findings]
-   - Legal principles applied: [All legal principles cited]
-   - Statute interpretation: [How statutes were interpreted]
-   - Case law references: [All precedent cases cited]
-   - Legal reasoning: [Step-by-step appellate analysis]
-   - Constitutional analysis: [If any constitutional issues]
-
-4. **DETAILED RULING**:
-   - Primary decision: [Main outcome (allowed/dismissed)]
-   - Specific orders made: [All orders, even minor ones]
-   - Relief granted/denied: [Exact relief awarded]
-   - Costs awarded: [If any costs were awarded]
-   - Remittal: [If case was remitted to trial court]
-   - Conditions imposed: [Any conditions attached to orders]
-   - Interest awarded: [If any interest was awarded]
-   - Damages: [If any damages were awarded]
-
-5. **REASONING AND JUSTIFICATION**:
-   - Primary reasons: [Main reasons for the decision]
-   - Analysis of trial court decision: [How appellate court viewed trial decision]
-   - Errors found: [Any errors identified in trial decision]
-   - Correct application of law: [How law should have been applied]
-   - Policy considerations: [Any policy reasons mentioned]
-   - Precedent setting: [If decision sets new precedent]
+   - Standard of review: [Standard applied by appellate court with specific details]
+   - Deference to trial court: [How much deference given to trial findings with reasoning]
+   - Legal principles applied: [All legal principles cited with specific applications]
+   - Statute interpretation: [How statutes were interpreted with specific sections]
+   - Case law references: [All precedent cases cited with specific holdings]
+   - Legal reasoning: [Step-by-step appellate analysis with logical progression]
+   - Constitutional analysis: [If any constitutional issues with specific analysis]
+   - Policy considerations: [Any policy reasons mentioned in appellate decision]
    - Public interest factors: [If any public interest considerations]
 
-6. **MINOR DETAILS AND PROCEDURAL ASPECTS**:
-   - Procedural history: [All appellate procedural steps]
-   - Applications made: [Any interlocutory applications]
-   - Rulings on objections: [How objections were handled]
-   - Specific dates mentioned: [All relevant dates]
-   - Any procedural irregularities: [If any were noted]
-   - Any other minor details: [Catch-all for anything missed]
+4. **DETAILED RULING**:
+   - Primary decision: [Main outcome (allowed/dismissed) with specific details]
+   - Specific orders made: [All orders, even minor ones, with exact wording]
+   - Relief granted/denied: [Exact relief awarded with specific amounts]
+   - Costs awarded: [If any costs were awarded with specific amounts]
+   - Remittal: [If case was remitted to trial court with specific directions]
+   - Conditions imposed: [Any conditions attached to orders]
+   - Interest awarded: [If any interest was awarded with rates]
+   - Damages: [If any damages were awarded with breakdown]
+   - Declaratory relief: [Any declaratory orders made]
+   - Injunctive relief: [Any injunctions granted or denied]
 
-7. **JUDGMENT STYLE**:
-   - Unanimous decision: [If all judges agreed]
-   - Majority opinion: [If there was a majority]
-   - Dissenting opinions: [If any judge disagreed and why]
+5. **REASONING AND JUSTIFICATION**:
+   - Primary reasons: [Main reasons for the decision with detailed explanation]
+   - Analysis of trial court decision: [How appellate court viewed trial decision]
+   - Errors found: [Any errors identified in trial decision with specific details]
+   - Correct application of law: [How law should have been applied with specific reasoning]
+   - Policy considerations: [Any policy reasons mentioned]
+   - Precedent setting: [If decision sets new precedent with specific details]
+   - Public interest factors: [If any public interest considerations]
+   - Factual basis for appellate conclusions: [Specific facts supporting appellate conclusions]
+   - Legal precedent considerations: [How precedent influenced appellate decision]
+
+6. **COMPARISON WITH TRIAL COURT DECISION**:
+   - Areas of agreement: [Where appellate court agreed with trial court]
+   - Areas of disagreement: [Where appellate court disagreed with trial court]
+   - Specific errors corrected: [Specific errors identified and corrected]
+   - Legal principles clarified: [Any legal principles clarified or corrected]
+   - Factual findings upheld: [Which factual findings were upheld]
+   - Factual findings overturned: [Which factual findings were overturned]
+   - Relief modified: [How relief was modified from trial court]
+
+7. **PROCEDURAL ASPECTS**:
+   - Procedural history: [All appellate procedural steps with dates]
+   - Applications made: [Any interlocutory applications with outcomes]
+   - Rulings on objections: [How objections were handled with specific rulings]
+   - Specific dates mentioned: [All relevant dates throughout appellate proceedings]
+   - Any procedural irregularities: [If any were noted and how addressed]
+   - Evidence rulings: [Any rulings on admissibility of evidence on appeal]
+   - Amendment applications: [Any applications to amend grounds of appeal]
+
+8. **JUDGMENT STYLE**:
+   - Unanimous decision: [If all judges agreed with specific details]
+   - Majority opinion: [If there was a majority with specific details]
+   - Dissenting opinions: [If any judge disagreed with specific reasons]
    - Concurring opinions: [If any judge agreed for different reasons]
-   - Separate judgments: [If judges wrote separate judgments]
-   - Lead judgment: [Who wrote the lead judgment]
+   - Separate judgments: [If judges wrote separate judgments with details]
+   - Lead judgment: [Who wrote the lead judgment with specific details]
+   - Ratio decidendi: [The main legal principle established]
 
-8. **LEGAL PRINCIPLES ESTABLISHED**:
-   - New legal principles: [If any new principles established]
-   - Interpretation of statutes: [How statutes were interpreted]
-   - Application of precedent: [How precedent cases were applied]
-   - Legal doctrines applied: [Any legal doctrines used]
+9. **LEGAL PRINCIPLES ESTABLISHED**:
+   - New legal principles: [If any new principles established with specific details]
+   - Interpretation of statutes: [How statutes were interpreted with specific sections]
+   - Application of precedent: [How precedent cases were applied or distinguished]
+   - Legal doctrines applied: [Any legal doctrines used with specific applications]
    - Constitutional principles: [If any constitutional principles established]
+   - Common law principles: [Any common law principles applied or developed]
+
+10. **SPECIFIC LEGAL ISSUES ADDRESSED**:
+    - Contract law issues: [If contract dispute, specific contract law principles]
+    - Tort law issues: [If tort claim, specific tort elements and analysis]
+    - Property law issues: [If property dispute, specific property law principles]
+    - Constitutional issues: [If constitutional issues, specific constitutional analysis]
+    - Administrative law issues: [If administrative action, specific administrative law]
+    - Employment law issues: [If employment dispute, specific employment law]
+    - Family law issues: [If family dispute, specific family law principles]
+
+11. **EVIDENCE ANALYSIS ON APPEAL**:
+    - Documentary evidence: [How documentary evidence was evaluated on appeal]
+    - Witness evidence: [How witness evidence was assessed on appeal]
+    - Expert evidence: [How expert evidence was treated on appeal]
+    - Physical evidence: [How physical evidence was evaluated on appeal]
+    - Electronic evidence: [How electronic evidence was handled on appeal]
+    - Circumstantial evidence: [How circumstantial evidence was weighed on appeal]
 
 IMPORTANT INSTRUCTIONS:
-- Extract EVERY detail, no matter how minor
-- Include specific legal citations and references
-- Preserve exact language where possible
+- Extract EVERY detail, no matter how minor - accuracy is paramount
+- Include specific legal citations and references with exact section numbers
+- Preserve exact language where possible, especially for legal terms and orders
 - Do not summarize - provide comprehensive details
 - If information is not available, state "Not mentioned in document"
-- Focus on the appellate court's reasoning and how it differed from trial court
+- Focus on the appellate court's reasoning and findings
 - Include all procedural aspects and orders
+- Pay special attention to amounts, dates, and specific factual details
+- Ensure all legal citations are accurate and complete
+- Highlight any novel or unusual legal reasoning
+- Note any procedural irregularities or unusual aspects
+- Provide specific factual basis for each legal conclusion
+- Emphasize the appellate court's analysis of the trial court decision
+- Highlight any new legal principles established
 
-RESPOND WITH A DETAILED STRUCTURED ANALYSIS COVERING ALL SECTIONS ABOVE:
+RESPOND WITH A DETAILED STRUCTURED ANALYSIS COVERING ALL SECTIONS ABOVE. BE EXTREMELY THOROUGH AND ACCURATE:
 """
 
     @staticmethod

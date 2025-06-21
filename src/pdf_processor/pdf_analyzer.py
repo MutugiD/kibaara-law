@@ -195,6 +195,30 @@ class PDFAnalyzer:
                 'timestamp': self._get_timestamp()
             }
 
+    def _extract_sections_from_text(self, text: str) -> dict:
+        """
+        Extracts trial_court_ruling, appellate_court_ruling, and summary sections from markdown/text summary.
+        """
+        import re
+        sections = {
+            'trial_court_ruling': {},
+            'appellate_court_ruling': {},
+            'summary': {}
+        }
+        # Extract trial court section
+        trial_match = re.search(r'(TRIAL COURT DECISION SUMMARY|TRIAL COURT DECISION|TRIAL COURT RULING|TRIAL COURT)[\s\S]*?(?=APPELLATE COURT|APPELLATE COURT RULING|APPELLATE COURT DECISION|SUMMARY|$)', text, re.IGNORECASE)
+        if trial_match:
+            sections['trial_court_ruling']['text'] = trial_match.group().strip()
+        # Extract appellate court section
+        appellate_match = re.search(r'(APPELLATE COURT RULING SUMMARY|APPELLATE COURT RULING|APPELLATE COURT DECISION|APPELLATE COURT)[\s\S]*?(?=SUMMARY|LITIGATION PROGRESSION|LEGAL PRINCIPLES|$)', text, re.IGNORECASE)
+        if appellate_match:
+            sections['appellate_court_ruling']['text'] = appellate_match.group().strip()
+        # Extract summary/comparative section
+        summary_match = re.search(r'(SUMMARY|LITIGATION PROGRESSION ANALYSIS|LITIGATION PROGRESSION|COMPARATIVE ANALYSIS|LEGAL PRINCIPLES AND PRECEDENT|CASE OVERVIEW)[\s\S]*', text, re.IGNORECASE)
+        if summary_match:
+            sections['summary']['text'] = summary_match.group().strip()
+        return sections
+
     async def create_comprehensive_summary(self, case_title: str, pleadings_analysis: str,
                                    trial_decision: str, appellate_ruling: str) -> Dict[str, Any]:
         """
@@ -220,31 +244,44 @@ class PDFAnalyzer:
             # Analyze with LLM
             response = await self.llm_service.analyze_with_gpt4o(prompt)
 
-            if response:
+            parsed_summary = self._extract_json_from_text(response) if response else None
+
+            if parsed_summary and isinstance(parsed_summary, dict) and all(k in parsed_summary for k in ["trial_court_ruling", "appellate_court_ruling", "summary"]):
                 result = {
                     'success': True,
                     'case_title': case_title,
                     'analysis_type': 'comprehensive_summary',
-                    'summary': response,
+                    'trial_court_ruling': parsed_summary.get('trial_court_ruling', {}),
+                    'appellate_court_ruling': parsed_summary.get('appellate_court_ruling', {}),
+                    'summary': parsed_summary.get('summary', {}),
+                    'raw_response': response,
                     'timestamp': self._get_timestamp()
                 }
-                logger.info(f"Successfully created comprehensive summary for: {case_title}")
-                return result
             else:
-                logger.error(f"Failed to create comprehensive summary for: {case_title}")
-                return {
+                logger.warning(f"LLM did not return valid JSON structure for comprehensive summary in case: {case_title}. Attempting to extract sections from text.")
+                extracted_sections = self._extract_sections_from_text(response or "")
+                result = {
                     'success': False,
                     'case_title': case_title,
-                    'error': 'LLM analysis failed',
+                    'analysis_type': 'comprehensive_summary',
+                    'trial_court_ruling': extracted_sections.get('trial_court_ruling', {'error': 'Section not found'}),
+                    'appellate_court_ruling': extracted_sections.get('appellate_court_ruling', {'error': 'Section not found'}),
+                    'summary': extracted_sections.get('summary', {'error': 'Section not found'}),
+                    'raw_response': response,
                     'timestamp': self._get_timestamp()
                 }
 
+            logger.info(f"Comprehensive summary for {case_title} created with enforced structure.")
+            return result
         except Exception as e:
             logger.error(f"Error creating comprehensive summary for {case_title}: {e}")
             return {
                 'success': False,
                 'case_title': case_title,
-                'error': str(e),
+                'analysis_type': 'comprehensive_summary',
+                'trial_court_ruling': {'error': str(e)},
+                'appellate_court_ruling': {'error': str(e)},
+                'summary': {'error': str(e)},
                 'timestamp': self._get_timestamp()
             }
 

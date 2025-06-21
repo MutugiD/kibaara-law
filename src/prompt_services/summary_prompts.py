@@ -32,7 +32,7 @@ class SummaryPrompts:
             Formatted prompt for comprehensive case summary
         """
         return f"""
-You are a legal expert creating a comprehensive summary of a Kenyan court case with 2-hop litigation. Please create a detailed case summary based on the following analyses:
+You are a senior legal expert specializing in Kenyan law, tasked with creating a comprehensive summary of a Kenyan court case with 2-hop litigation. You must provide extremely detailed, accurate, and relevant analysis that differentiates between trial court and appellate court arguments and rulings.
 
 CASE TITLE: {case_title}
 
@@ -45,79 +45,148 @@ TRIAL COURT DECISION:
 APPELLATE COURT RULING:
 {appellate_ruling}
 
-REQUIRED COMPREHENSIVE SUMMARY:
+REQUIRED COMPREHENSIVE SUMMARY IN JSON FORMAT:
 
-1. **CASE OVERVIEW**:
-   - Full case title and citation
-   - Subject matter and legal area
-   - Key legal issues involved
-   - Significance of the case
-   - Type of litigation (civil, criminal, constitutional, etc.)
+You must respond with a JSON object that has the following structure:
 
-2. **PARTIES AND PROCEDURAL HISTORY**:
-   - All parties involved with their roles
-   - Complete procedural timeline
-   - Key procedural events
-   - Any procedural irregularities
-   - Legal representatives involved
-
-3. **DETAILED PLEADINGS SUMMARY**:
-   - Plaintiff/Appellant's complete claims
-   - Defendant/Respondent's complete defenses
-   - All legal grounds raised
-   - Evidence presented by each party
-   - Relief sought by each party
-   - Key arguments made by each side
-
-4. **TRIAL COURT DECISION SUMMARY**:
-   - Court and judge(s) involved
-   - Complete findings of fact
-   - Legal analysis and reasoning
-   - Specific decision and orders
-   - Key legal principles established
-   - Relief granted or denied
-
-5. **APPELLATE COURT RULING SUMMARY**:
-   - Court and judge(s) involved
-   - Grounds of appeal raised
-   - Appellate court's analysis
-   - Complete ruling and orders
-   - Key legal principles established
-   - Relief granted or denied on appeal
-
-6. **LITIGATION PROGRESSION ANALYSIS**:
-   - How case progressed from trial to appellate court
-   - Key differences between trial and appellate reasoning
-   - What changed between the two decisions
-   - Procedural lessons learned
-   - Impact of appellate decision on trial decision
-
-7. **LEGAL PRINCIPLES AND PRECEDENT**:
-   - Key legal principles established
-   - Precedent value of the case
-   - Impact on Kenyan jurisprudence
-   - Relationship to existing case law
-   - Novel legal interpretations
-
-8. **CASE METADATA**:
-   - Case numbers (trial and appellate)
-   - Decision dates
-   - Courts involved
-   - Judges involved
-   - Legal areas covered
-   - Citation information
-   - File references
+{{
+  "success": true,
+  "case_title": "[Full case title]",
+  "analysis_type": "comprehensive_summary",
+  "trial_court_ruling": {{
+    "court_info": {{
+      "court_name": "[Exact court name and location]",
+      "judges": "[Full names of presiding judge(s) with titles]",
+      "case_number": "[Trial court case number]",
+      "decision_date": "[Exact date of trial court decision]"
+    }},
+    "key_arguments": {{
+      "plaintiff_arguments": "[Detailed summary of plaintiff's key arguments]",
+      "defendant_arguments": "[Detailed summary of defendant's key arguments]",
+      "legal_grounds": "[Specific legal principles and statutes cited]",
+      "evidence_presented": "[Key evidence presented by each party]"
+    }},
+    "findings": {{
+      "factual_findings": "[Detailed factual findings with specific details]",
+      "legal_findings": "[Legal conclusions reached with reasoning]",
+      "evidence_evaluation": "[How court evaluated evidence]",
+      "witness_credibility": "[Any credibility assessments]"
+    }},
+    "decision": {{
+      "primary_outcome": "[Main outcome with specific details]",
+      "orders_made": "[All specific orders with exact wording]",
+      "relief_granted": "[Exact relief awarded with amounts]",
+      "costs_awarded": "[If any costs were awarded]",
+      "reasoning": "[Detailed reasoning for the decision]"
+    }},
+    "legal_principles": {{
+      "statutes_interpreted": "[How statutes were interpreted]",
+      "case_law_applied": "[Precedent cases cited and applied]",
+      "new_principles": "[Any new legal principles established]",
+      "legal_doctrines": "[Legal doctrines applied]"
+    }}
+  }},
+  "appellate_court_ruling": {{
+    "court_info": {{
+      "court_name": "[Exact appellate court name]",
+      "judges": "[Full names of all appellate judges with titles]",
+      "case_number": "[Appellate court case number]",
+      "decision_date": "[Exact date of appellate decision]"
+    }},
+    "grounds_of_appeal": {{
+      "primary_grounds": "[All grounds of appeal raised with details]",
+      "legal_basis": "[Specific legal principles and statutory provisions]",
+      "arguments_presented": "[Complete arguments for each ground]",
+      "evidence_relied_upon": "[Evidence cited in support]"
+    }},
+    "appellate_analysis": {{
+      "standard_of_review": "[Standard applied by appellate court]",
+      "deference_to_trial": "[How much deference given to trial findings]",
+      "legal_reasoning": "[Step-by-step appellate analysis]",
+      "constitutional_analysis": "[If any constitutional issues]"
+    }},
+    "appellate_decision": {{
+      "primary_outcome": "[Main outcome (allowed/dismissed) with details]",
+      "orders_made": "[All specific orders with exact wording]",
+      "relief_granted": "[Exact relief awarded with amounts]",
+      "costs_awarded": "[If any costs were awarded]",
+      "remittal": "[If case was remitted with directions]"
+    }},
+    "comparison_with_trial": {{
+      "areas_of_agreement": "[Where appellate court agreed with trial court]",
+      "areas_of_disagreement": "[Where appellate court disagreed with trial court]",
+      "errors_corrected": "[Specific errors identified and corrected]",
+      "legal_principles_clarified": "[Any legal principles clarified]",
+      "factual_findings_upheld": "[Which factual findings were upheld]",
+      "factual_findings_overturned": "[Which factual findings were overturned]",
+      "relief_modified": "[How relief was modified from trial court]"
+    }},
+    "legal_principles": {{
+      "new_principles": "[Any new legal principles established]",
+      "statutes_interpreted": "[How statutes were interpreted]",
+      "precedent_setting": "[If decision sets new precedent]",
+      "constitutional_principles": "[Any constitutional principles established]"
+    }}
+  }},
+  "summary": {{
+    "case_overview": {{
+      "subject_matter": "[Primary subject matter and legal area]",
+      "key_legal_issues": "[Main legal issues involved]",
+      "significance": "[Significance of the case]",
+      "litigation_type": "[Type of litigation (civil, criminal, constitutional)]"
+    }},
+    "parties_and_procedure": {{
+      "parties": "[All parties involved with their roles]",
+      "procedural_timeline": "[Complete procedural timeline]",
+      "legal_representatives": "[Legal representatives involved]"
+    }},
+    "factual_background": {{
+      "chronological_events": "[Detailed timeline of relevant events]",
+      "key_factual_disputes": "[Specific factual issues in contention]",
+      "background_circumstances": "[Context that led to the dispute]"
+    }},
+    "legal_analysis": {{
+      "key_legal_principles": "[Key legal principles established]",
+      "precedent_value": "[Precedent value of the case]",
+      "impact_on_jurisprudence": "[Impact on Kenyan jurisprudence]",
+      "novel_interpretations": "[Any novel legal interpretations]"
+    }},
+    "comparative_analysis": {{
+      "alignment_departure": "[Whether rulings in two courts align or depart from each other]",
+      "key_differences": "[Key differences between trial and appellate reasoning]",
+      "procedural_lessons": "[Procedural lessons learned]",
+      "impact_of_appellate": "[Impact of appellate decision on trial decision]"
+    }},
+    "case_metadata": {{
+      "trial_case_number": "[Trial court case number]",
+      "appellate_case_number": "[Appellate court case number]",
+      "trial_date": "[Date of trial court decision]",
+      "appellate_date": "[Date of appellate court decision]",
+      "courts_involved": "[All courts involved]",
+      "judges_involved": "[All judges involved]",
+      "legal_areas": "[Legal areas covered]",
+      "citation": "[Legal citation if available]"
+    }}
+  }},
+  "timestamp": "[Current timestamp]"
+}}
 
 IMPORTANT INSTRUCTIONS:
-- Create a comprehensive, detailed summary
+- Create a comprehensive, detailed summary that is extremely accurate and relevant
 - Include ALL important details from the analyses
-- Maintain accuracy and completeness
-- Structure the summary logically
+- Maintain accuracy and completeness in all sections
+- Structure the summary logically with clear differentiation between trial and appellate courts
 - Include specific legal citations and references
 - Focus on the 2-hop litigation progression
-- Highlight key legal developments
+- Highlight key legal developments and differences between courts
+- Ensure the JSON structure is valid and complete
+- Pay special attention to the comparative analysis section
+- Emphasize whether the rulings align or depart from each other
+- Provide detailed factual and legal analysis
+- Include specific amounts, dates, and factual details
+- Ensure all legal citations are accurate and complete
 
-RESPOND WITH A COMPREHENSIVE STRUCTURED SUMMARY COVERING ALL SECTIONS ABOVE:
+RESPOND WITH A COMPLETE JSON OBJECT FOLLOWING THE EXACT STRUCTURE ABOVE. BE EXTREMELY THOROUGH AND ACCURATE:
 """
 
     @staticmethod
