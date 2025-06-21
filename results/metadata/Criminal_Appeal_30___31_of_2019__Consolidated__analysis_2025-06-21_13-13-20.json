@@ -1,0 +1,88 @@
+{
+  "success": true,
+  "case_title": "Criminal_Appeal_30___31_of_2019__Consolidated_",
+  "analysis_type": "metadata_extraction",
+  "metadata": {
+    "BASIC CASE INFORMATION": {
+      "case_title": "Dennis Mutinda Matheka alias Stupid and Alexander Mutiso Peter v Republic",
+      "citation": "[2020] eKLR",
+      "subject_matter": "Robbery with violence",
+      "legal_area": "Criminal law",
+      "case_type": "Criminal Appeal"
+    },
+    "COURT INFORMATION": {
+      "trial_court": "Chief Magistrate's Court at Kajiado",
+      "appellate_court": "High Court of Kenya at Kajiado",
+      "trial_judges": "Hon. S. M. Shitubi, CM",
+      "appellate_judges": "Not mentioned"
+    },
+    "CASE NUMBERS AND DATES": {
+      "trial_case_number": "Criminal Case No. 339 of 2017",
+      "appellate_case_number": "Criminal Appeal No. 30 & 31 of 2019 (Consolidated)",
+      "trial_date": "14th September 2018",
+      "appellate_date": "Not mentioned",
+      "filing_date": "16th July 2019"
+    },
+    "PARTIES": {
+      "plaintiff_appellant": "Dennis Mutinda Matheka alias Stupid and Alexander Mutiso Peter",
+      "defendant_respondent": "Republic of Kenya",
+      "other_parties": "Not mentioned"
+    },
+    "LEGAL ISSUES": {
+      "key_legal_issues": [
+        "Whether the conviction for robbery with violence was supported by sufficient evidence",
+        "The appropriateness of the death penalty under the circumstances",
+        "The adequacy of the identification process and the right to cross-examine co-accused"
+      ],
+      "grounds_of_appeal": [
+        "Insufficient evidence and procedural errors",
+        "Improper imposition of the death penalty"
+      ],
+      "constitutional_issues": "Not mentioned"
+    },
+    "OUTCOMES": {
+      "trial_outcome": "Convicted on both counts of robbery with violence; sentenced to death for count 1",
+      "appellate_outcome": "Not specifically detailed",
+      "relief_granted": "Quashing of convictions and setting aside of sentences sought",
+      "costs_awarded": "Not mentioned"
+    },
+    "LEGAL PRINCIPLES": {
+      "legal_principles_established": [
+        "Burden of proof and standard of proof in criminal cases",
+        "Right to a fair trial, including the right to cross-examine co-accused"
+      ],
+      "precedent_value": "Reinforces the importance of procedural fairness and proper evidence evaluation in criminal trials",
+      "statutes_interpreted": [
+        "Sections 295 and 296(2) of the Penal Code",
+        "Section 208(3) of the Criminal Procedure Code"
+      ],
+      "case_law_cited": [
+        "Wamunga v Republic",
+        "Bogere Moses Another V Uganda"
+      ]
+    },
+    "PROCEDURAL ASPECTS": {
+      "procedural_history": [
+        "7th February 2017: Alleged robbery occurred",
+        "14th September 2018: Conviction and sentencing by the Chief Magistrate's Court at Kajiado",
+        "16th July 2019: Appeals filed by the appellants",
+        "18th March 2020: Written submissions filed"
+      ],
+      "procedural_irregularities": "Alleged failure to inform appellants of their right to cross-examine co-accused",
+      "applications_made": "Not mentioned"
+    },
+    "EVIDENCE AND DOCUMENTATION": {
+      "key_evidence": "Testimonies from 12 witnesses and identification parade procedures",
+      "expert_evidence": "Not mentioned",
+      "documents_referenced": "Not mentioned"
+    },
+    "ANALYSIS INFORMATION": {
+      "analysis_complete": true,
+      "analysis_timestamp": "2023-10-14T00:00:00Z",
+      "pdf_files": "Not mentioned",
+      "analysis_quality": "High"
+    }
+  },
+  "raw_response": "```json\n{\n  \"BASIC CASE INFORMATION\": {\n    \"case_title\": \"Dennis Mutinda Matheka alias Stupid and Alexander Mutiso Peter v Republic\",\n    \"citation\": \"[2020] eKLR\",\n    \"subject_matter\": \"Robbery with violence\",\n    \"legal_area\": \"Criminal law\",\n    \"case_type\": \"Criminal Appeal\"\n  },\n  \"COURT INFORMATION\": {\n    \"trial_court\": \"Chief Magistrate's Court at Kajiado\",\n    \"appellate_court\": \"High Court of Kenya at Kajiado\",\n    \"trial_judges\": \"Hon. S. M. Shitubi, CM\",\n    \"appellate_judges\": \"Not mentioned\"\n  },\n  \"CASE NUMBERS AND DATES\": {\n    \"trial_case_number\": \"Criminal Case No. 339 of 2017\",\n    \"appellate_case_number\": \"Criminal Appeal No. 30 & 31 of 2019 (Consolidated)\",\n    \"trial_date\": \"14th September 2018\",\n    \"appellate_date\": \"Not mentioned\",\n    \"filing_date\": \"16th July 2019\"\n  },\n  \"PARTIES\": {\n    \"plaintiff_appellant\": \"Dennis Mutinda Matheka alias Stupid and Alexander Mutiso Peter\",\n    \"defendant_respondent\": \"Republic of Kenya\",\n    \"other_parties\": \"Not mentioned\"\n  },\n  \"LEGAL ISSUES\": {\n    \"key_legal_issues\": [\n      \"Whether the conviction for robbery with violence was supported by sufficient evidence\",\n      \"The appropriateness of the death penalty under the circumstances\",\n      \"The adequacy of the identification process and the right to cross-examine co-accused\"\n    ],\n    \"grounds_of_appeal\": [\n      \"Insufficient evidence and procedural errors\",\n      \"Improper imposition of the death penalty\"\n    ],\n    \"constitutional_issues\": \"Not mentioned\"\n  },\n  \"OUTCOMES\": {\n    \"trial_outcome\": \"Convicted on both counts of robbery with violence; sentenced to death for count 1\",\n    \"appellate_outcome\": \"Not specifically detailed\",\n    \"relief_granted\": \"Quashing of convictions and setting aside of sentences sought\",\n    \"costs_awarded\": \"Not mentioned\"\n  },\n  \"LEGAL PRINCIPLES\": {\n    \"legal_principles_established\": [\n      \"Burden of proof and standard of proof in criminal cases\",\n      \"Right to a fair trial, including the right to cross-examine co-accused\"\n    ],\n    \"precedent_value\": \"Reinforces the importance of procedural fairness and proper evidence evaluation in criminal trials\",\n    \"statutes_interpreted\": [\n      \"Sections 295 and 296(2) of the Penal Code\",\n      \"Section 208(3) of the Criminal Procedure Code\"\n    ],\n    \"case_law_cited\": [\n      \"Wamunga v Republic\",\n      \"Bogere Moses Another V Uganda\"\n    ]\n  },\n  \"PROCEDURAL ASPECTS\": {\n    \"procedural_history\": [\n      \"7th February 2017: Alleged robbery occurred\",\n      \"14th September 2018: Conviction and sentencing by the Chief Magistrate's Court at Kajiado\",\n      \"16th July 2019: Appeals filed by the appellants\",\n      \"18th March 2020: Written submissions filed\"\n    ],\n    \"procedural_irregularities\": \"Alleged failure to inform appellants of their right to cross-examine co-accused\",\n    \"applications_made\": \"Not mentioned\"\n  },\n  \"EVIDENCE AND DOCUMENTATION\": {\n    \"key_evidence\": \"Testimonies from 12 witnesses and identification parade procedures\",\n    \"expert_evidence\": \"Not mentioned\",\n    \"documents_referenced\": \"Not mentioned\"\n  },\n  \"ANALYSIS INFORMATION\": {\n    \"analysis_complete\": true,\n    \"analysis_timestamp\": \"2023-10-14T00:00:00Z\",\n    \"pdf_files\": \"Not mentioned\",\n    \"analysis_quality\": \"High\"\n  }\n}\n```",
+  "timestamp": "2025-06-21 13:13:20"
+}

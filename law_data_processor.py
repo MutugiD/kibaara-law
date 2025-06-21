@@ -192,13 +192,13 @@ async def run_complete_workflow(services: Dict[str, Any], config: Dict[str, Any]
         # Step 5: Analyze cases
         logger.info("Step 5: Analyzing cases")
         try:
-            analysis_tasks = []
+            analysis_results = []
             for case in filtered_cases:
                 if isinstance(case, dict):
-                    analysis_tasks.append(services['case_analyzer'].analyze_case(case))
+                    analysis_result = await services['case_analyzer'].analyze_case(case)
+                    analysis_results.append(analysis_result)
 
-            analysis_results = await asyncio.gather(*analysis_tasks)
-            successful_analyses = len([r for r in analysis_results if r.get('success', False)])
+            successful_analyses = len([r for r in analysis_results if r.get('success', False) or r.get('confidence_score', 0) > 0])
             logger.info(f"✓ Case analysis completed. {successful_analyses}/{len(analysis_results)} successful")
             workflow_results['steps_completed'].append('case_analysis')
         except Exception as e:

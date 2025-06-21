@@ -1,0 +1,91 @@
+{
+  "success": true,
+  "case_title": "Civil_Appeal_69_of_2005_with_metadata",
+  "analysis_type": "metadata_extraction",
+  "metadata": {
+    "BASIC_CASE_INFORMATION": {
+      "case_title": "Nyamogo Nyamogo Advocates v Barclays Bank of Kenya",
+      "citation": "[2015] eKLR",
+      "subject_matter": "Breach of contract, injurious falsehood, libel, and negligence",
+      "legal_area": "Civil litigation",
+      "case_type": "Civil Appeal"
+    },
+    "COURT_INFORMATION": {
+      "trial_court": "Not specified",
+      "appellate_court": "Court of Appeal at Nairobi",
+      "trial_judges": "Not mentioned",
+      "appellate_judges": [
+        "Roselyn Naliaka Nambuye",
+        "Patrick Omwenga Kiage",
+        "Agnes Kalekye Murgor"
+      ]
+    },
+    "CASE_NUMBERS_AND_DATES": {
+      "trial_case_number": "Not mentioned",
+      "appellate_case_number": "Civil Appeal 69 of 2005",
+      "trial_date": "Not specified",
+      "appellate_date": "May 8, 2015",
+      "filing_date": "Not mentioned"
+    },
+    "PARTIES": {
+      "plaintiff_appellant": "Nyamogo Nyamogo Advocates",
+      "defendant_respondent": "Barclays Bank of Kenya Limited",
+      "other_parties": [
+        "Arthur William Ogwayo"
+      ]
+    },
+    "LEGAL_ISSUES": {
+      "key_legal_issues": [
+        "Wrongful dishonor of a cheque",
+        "Assessment of damages under the Bills of Exchange Act",
+        "Requirement for specific pleading of liquidated damages"
+      ],
+      "grounds_of_appeal": [
+        "Challenged the trial court's award of damages, specifically the nominal damages for breach of contract and substantial damages for injurious falsehood"
+      ],
+      "constitutional_issues": "Not mentioned"
+    },
+    "OUTCOMES": {
+      "trial_outcome": "Awarded Kshs. 10,000 for breach of contract and Kshs. 1 million for injurious falsehood",
+      "appellate_outcome": "Appeal dismissed; upheld the trial court's decision",
+      "relief_granted": [
+        "Damages for injurious falsehood and breach of contract"
+      ],
+      "costs_awarded": "Costs awarded to the plaintiff"
+    },
+    "LEGAL_PRINCIPLES": {
+      "legal_principles_established": [
+        "Requirement for specific pleading of liquidated damages under section 57 of the Bills of Exchange Act"
+      ],
+      "precedent_value": "Reinforces the necessity of specific pleadings in claims involving dishonored cheques",
+      "statutes_interpreted": [
+        "Bills of Exchange Act"
+      ],
+      "case_law_cited": "Not mentioned"
+    },
+    "PROCEDURAL_ASPECTS": {
+      "procedural_history": [
+        "Cheque drawn on June 8, 1998",
+        "Liability admitted by the respondent for the wrongful dishonor of the cheque",
+        "Appeal filed challenging the trial court's award of damages"
+      ],
+      "procedural_irregularities": "Not mentioned",
+      "applications_made": "Not mentioned"
+    },
+    "EVIDENCE_AND_DOCUMENTATION": {
+      "key_evidence": [
+        "Testimonies of Nyamodi Ochieng Nyamogo and Arthur William Ogwayo"
+      ],
+      "expert_evidence": "Not mentioned",
+      "documents_referenced": "Not mentioned"
+    },
+    "ANALYSIS_INFORMATION": {
+      "analysis_complete": true,
+      "analysis_timestamp": "2023-10-06T12:00:00Z",
+      "pdf_files": "Not mentioned",
+      "analysis_quality": "High"
+    }
+  },
+  "raw_response": "```json\n{\n  \"BASIC_CASE_INFORMATION\": {\n    \"case_title\": \"Nyamogo Nyamogo Advocates v Barclays Bank of Kenya\",\n    \"citation\": \"[2015] eKLR\",\n    \"subject_matter\": \"Breach of contract, injurious falsehood, libel, and negligence\",\n    \"legal_area\": \"Civil litigation\",\n    \"case_type\": \"Civil Appeal\"\n  },\n  \"COURT_INFORMATION\": {\n    \"trial_court\": \"Not specified\",\n    \"appellate_court\": \"Court of Appeal at Nairobi\",\n    \"trial_judges\": \"Not mentioned\",\n    \"appellate_judges\": [\n      \"Roselyn Naliaka Nambuye\",\n      \"Patrick Omwenga Kiage\",\n      \"Agnes Kalekye Murgor\"\n    ]\n  },\n  \"CASE_NUMBERS_AND_DATES\": {\n    \"trial_case_number\": \"Not mentioned\",\n    \"appellate_case_number\": \"Civil Appeal 69 of 2005\",\n    \"trial_date\": \"Not specified\",\n    \"appellate_date\": \"May 8, 2015\",\n    \"filing_date\": \"Not mentioned\"\n  },\n  \"PARTIES\": {\n    \"plaintiff_appellant\": \"Nyamogo Nyamogo Advocates\",\n    \"defendant_respondent\": \"Barclays Bank of Kenya Limited\",\n    \"other_parties\": [\n      \"Arthur William Ogwayo\"\n    ]\n  },\n  \"LEGAL_ISSUES\": {\n    \"key_legal_issues\": [\n      \"Wrongful dishonor of a cheque\",\n      \"Assessment of damages under the Bills of Exchange Act\",\n      \"Requirement for specific pleading of liquidated damages\"\n    ],\n    \"grounds_of_appeal\": [\n      \"Challenged the trial court's award of damages, specifically the nominal damages for breach of contract and substantial damages for injurious falsehood\"\n    ],\n    \"constitutional_issues\": \"Not mentioned\"\n  },\n  \"OUTCOMES\": {\n    \"trial_outcome\": \"Awarded Kshs. 10,000 for breach of contract and Kshs. 1 million for injurious falsehood\",\n    \"appellate_outcome\": \"Appeal dismissed; upheld the trial court's decision\",\n    \"relief_granted\": [\n      \"Damages for injurious falsehood and breach of contract\"\n    ],\n    \"costs_awarded\": \"Costs awarded to the plaintiff\"\n  },\n  \"LEGAL_PRINCIPLES\": {\n    \"legal_principles_established\": [\n      \"Requirement for specific pleading of liquidated damages under section 57 of the Bills of Exchange Act\"\n    ],\n    \"precedent_value\": \"Reinforces the necessity of specific pleadings in claims involving dishonored cheques\",\n    \"statutes_interpreted\": [\n      \"Bills of Exchange Act\"\n    ],\n    \"case_law_cited\": \"Not mentioned\"\n  },\n  \"PROCEDURAL_ASPECTS\": {\n    \"procedural_history\": [\n      \"Cheque drawn on June 8, 1998\",\n      \"Liability admitted by the respondent for the wrongful dishonor of the cheque\",\n      \"Appeal filed challenging the trial court's award of damages\"\n    ],\n    \"procedural_irregularities\": \"Not mentioned\",\n    \"applications_made\": \"Not mentioned\"\n  },\n  \"EVIDENCE_AND_DOCUMENTATION\": {\n    \"key_evidence\": [\n      \"Testimonies of Nyamodi Ochieng Nyamogo and Arthur William Ogwayo\"\n    ],\n    \"expert_evidence\": \"Not mentioned\",\n    \"documents_referenced\": \"Not mentioned\"\n  },\n  \"ANALYSIS_INFORMATION\": {\n    \"analysis_complete\": true,\n    \"analysis_timestamp\": \"2023-10-06T12:00:00Z\",\n    \"pdf_files\": \"Not mentioned\",\n    \"analysis_quality\": \"High\"\n  }\n}\n```",
+  "timestamp": "2025-06-21 13:08:33"
+}

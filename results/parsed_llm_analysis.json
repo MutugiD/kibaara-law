@@ -13,8 +13,8 @@
         "case_number": "Not specified",
         "date": "Not specified"
       },
-      "description": "The appellate court reviewed the award of damages from the trial court, indicating a progression from trial to appellate court.",
-      "confidence": "Medium"
+      "description": "The appellate court reviewed the trial court's award of damages, indicating a progression from trial to appellate court.",
+      "confidence": "High"
     },
     {
       "title": "Civil Appeal 12 of 2022",
@@ -25,11 +25,11 @@
         "url": "https://kenyalaw.org/caselaw/cases/view/282235/index.php?id=3479"
       },
       "trial_reference": {
-        "court": "Magistrate's Court",
+        "court": "Senior Resident Magistrate's Court",
         "case_number": "Mutomo PMCC NO. E007 OF 2022",
         "date": "8th June 2022"
       },
-      "description": "This case is an appeal from the judgment of the Senior Resident Magistrate, showing a clear progression from trial to appellate court.",
+      "description": "This appeal was from a judgment delivered by the Senior Resident Magistrate, showing a clear progression from trial to appellate court.",
       "confidence": "High"
     },
     {
@@ -59,10 +59,10 @@
       "trial_reference": {
         "court": "Children's Court",
         "case_number": "Not specified",
-        "date": "21st February 2018"
+        "date": "21st February, 2018"
       },
       "description": "The appellant sought to set aside the judgment of the Children's Court, showing a progression from trial to appellate court.",
-      "confidence": "Medium"
+      "confidence": "High"
     },
     {
       "title": "Mwangi v Republic (Criminal Appeal 48 of 2019)",

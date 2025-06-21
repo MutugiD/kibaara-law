@@ -73,7 +73,7 @@ class PDFAnalysisService:
 
             # Step 1: Process the PDF
             logger.info(f"Processing PDF: {pdf_path}")
-            pdf_result = self.pdf_extractor.process_pdf_file(pdf_path)
+            pdf_result = self.pdf_extractor.process_pdf_file(pdf_path, case_title)
 
             if not pdf_result['success']:
                 return {
