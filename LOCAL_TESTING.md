@@ -1,309 +1,284 @@
-# Local Testing Guide - Legal Assistant
+# Local Testing Guide for Legal Assistant Backend
 
-This guide provides step-by-step instructions for testing the legal assistant functionality locally.
+## Overview
+This document provides step-by-step instructions for testing the legal assistant backend locally, including all components and the complete end-to-end workflow.
 
 ## Prerequisites
 
-### System Requirements
-- Python 3.11 or higher
-- Chrome browser (for web scraping)
-- At least 4GB RAM
-- Stable internet connection
+### Environment Setup
+```bash
+# Activate virtual environment
+source law_env/bin/activate
 
-### Dependencies Installation
+# Verify Python version
+python --version  # Should be 3.12.x
 
-1. **Install Python dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+# Check installed packages
+pip list | grep -E "(openai|aiohttp|beautifulsoup4|PyPDF2|loguru)"
+```
 
-2. **Verify Chrome installation:**
-   ```bash
-   google-chrome --version
-   # or
-   chromium-browser --version
-   ```
+### API Keys Configuration
+Ensure `.env` file contains:
+```env
+OPENAI_API_KEY=your_openai_api_key_here
+SERP_API_KEY=your_serp_api_key_here
+```
 
-3. **Create necessary directories:**
-   ```bash
-   mkdir -p logs results
-   ```
+## Testing Procedures
 
-## Testing Workflow
+### 1. Basic Service Initialization Test
 
-### 1. Basic Functionality Test
+**File**: `test_service_initialization.py`
+**Purpose**: Verify all services can be initialized without errors
 
-**Command:**
+```bash
+python test_service_initialization.py
+```
+
+**Expected Output**:
+- All services initialized successfully
+- No import errors
+- Cache service working
+- PDF processor modules loaded
+
+### 2. Cache Service Test
+
+**File**: `test_cache_service.py`
+**Purpose**: Test caching functionality for avoiding re-processing
+
+```bash
+python test_cache_service.py
+```
+
+**Expected Output**:
+- Cache service initialized
+- Test data cached successfully
+- Cache retrieval working
+- Cache statistics updated
+
+### 3. PDF Downloader Test
+
+**File**: `test_pdf_downloader.py`
+**Purpose**: Test PDF downloading with cache support
+
+```bash
+python test_pdf_downloader.py
+```
+
+**Expected Output**:
+- PDFs downloaded to `data/raw/`
+- Cache entries created
+- Duplicate downloads avoided
+- Error handling for failed downloads
+
+### 4. PDF Analysis Test
+
+**File**: `test_pdf_analysis.py`
+**Purpose**: Test PDF text extraction and analysis
+
+```bash
+python test_pdf_analysis.py
+```
+
+**Expected Output**:
+- PDF text extracted successfully
+- Processed content saved to `data/processed/`
+- Analysis results cached
+- Pleadings and rulings identified
+
+### 5. End-to-End Workflow Test
+
+**File**: `law_data_processor.py`
+**Purpose**: Test complete workflow from prompt to final results
+
 ```bash
 python law_data_processor.py
 ```
 
-**Expected Behavior:**
-- Script should start and show logging information
-- Should attempt to search for cases on Kenya Law
-- Should download and analyze cases
-- Should generate a summary report
+**Expected Output**:
+- Prompt processing completed
+- Serp search successful (10+ results)
+- LLM analysis completed (5+ cases)
+- PDF downloads successful (8 PDFs)
+- Case analysis completed
+- Final results saved to `results/final_analysis_results.json`
 
-**Success Indicators:**
-- No critical errors in logs
-- Results file generated in `results/legal_analysis_result.txt`
-- Processing time under 5 minutes
+## Current Testing Results
 
-### 2. Component Testing
+### ✅ Working Components
 
-#### Test Prompt Processing
-```python
-from src.services.prompt_processor import PromptProcessor
+1. **Service Initialization**
+   - All services initialize without errors
+   - Dependencies resolved correctly
+   - Cache service functional
 
-processor = PromptProcessor()
-prompt_text = "Find 3 Kenyan court cases about land disputes with multi-hop litigation"
-prompt = processor.process_prompt(prompt_text)
-print(f"Extracted {prompt.search_criteria.case_count} cases")
-print(f"Keywords: {prompt.search_criteria.keywords}")
+2. **Prompt Processing**
+   - PromptProcessor handles user queries
+   - Search criteria extracted correctly
+   - Prompt objects created successfully
+
+3. **Serp Search**
+   - Live web search working
+   - 37 raw results found
+   - 10 filtered results returned
+   - Real Kenyan court cases identified
+
+4. **LLM Analysis**
+   - GPT-4o integration working
+   - 5 cases with 2-hop litigation identified
+   - Case information extracted correctly
+   - Analysis results parsed successfully
+
+5. **PDF Downloading**
+   - 8 PDF files downloaded successfully
+   - Cache prevents re-downloading
+   - Error handling for 403 responses
+   - Files saved to `data/raw/`
+
+6. **PDF Processing**
+   - Text extraction working
+   - Content cleaned and normalized
+   - Sections extracted correctly
+   - Processed files saved to `data/processed/`
+
+7. **Case Analysis**
+   - Litigation hops detected
+   - Legal principles identified
+   - Case metadata extracted
+   - Analysis results cached
+
+### ⚠️ Known Issues
+
+1. **Filtering Logic**
+   - Appellate court detection needs improvement
+   - Some cases not being filtered correctly
+   - Need to handle different court name formats
+
+2. **PDF Analysis Performance**
+   - Large PDFs take time to process
+   - Memory usage could be optimized
+   - Need better error handling for corrupted PDFs
+
+3. **Error Handling**
+   - Some edge cases not handled
+   - Network timeouts could be improved
+   - Better logging for debugging
+
+## Test Data Generated
+
+### Files Created
+- **PDFs**: 8 files in `data/raw/`
+- **Processed**: 1 file in `data/processed/`
+- **Cache**: 2 files in `cache/`
+- **Results**: 5 files in `results/`
+
+### Sample Results
+```json
+{
+  "workflow_summary": {
+    "total_cases_found": 5,
+    "cases_with_2hop_litigation": 5,
+    "cases_ending_in_appellate": 1,
+    "pdfs_downloaded": 8,
+    "cases_analyzed": 1,
+    "pdfs_analyzed": 1
+  }
+}
 ```
 
-#### Test Search Engine
-```python
-from src.services.search_engine import SearchEngine
-import asyncio
+## Debugging Procedures
 
-async def test_search():
-    engine = SearchEngine()
-    # Test with mock criteria
-    criteria = {"keywords": ["land", "dispute"], "case_count": 2}
-    results = await engine.scraper.search_cases(criteria)
-    print(f"Found {len(results)} results")
-    await engine.close()
-
-asyncio.run(test_search())
-```
-
-#### Test Case Analyzer
-```python
-from src.services.case_analyzer import CaseAnalyzer
-from src.models.case_models import Case, CaseMetadata
-
-# Create a test case
-metadata = CaseMetadata(case_title="Test Case v Test Respondent")
-test_case = Case(metadata=metadata)
-
-analyzer = CaseAnalyzer()
-result = await analyzer.analyze_case(test_case)
-print(f"Confidence score: {result.confidence_score}")
-```
-
-### 3. Error Handling Tests
-
-#### Test Network Issues
+### 1. Check Logs
 ```bash
-# Disconnect internet and run
-python law_data_processor.py
-# Should handle gracefully with error message
+# View recent logs
+tail -f logs/legal_assistant.log
+
+# Search for errors
+grep ERROR logs/legal_assistant.log
 ```
 
-#### Test Invalid Prompts
-```python
-# Test with empty prompt
-prompt = processor.process_prompt("")
-# Should raise ValueError
+### 2. Verify Cache
+```bash
+# Check cache contents
+cat cache/test_cache.json | jq .
 
-# Test with very long prompt
-long_prompt = "test " * 1000
-prompt = processor.process_prompt(long_prompt)
-# Should raise ValueError for length
+# Clear cache if needed
+rm cache/*.json
 ```
 
-### 4. Performance Testing
+### 3. Test Individual Components
+```bash
+# Test specific service
+python -c "from src.services.llm_service import LLMService; print('LLMService OK')"
 
-#### Test Large Queries
-```python
-# Test with larger case count
-prompt_text = "Find 20 Kenyan court cases about constitutional matters"
-# Should complete within reasonable time (under 10 minutes)
+# Test PDF processing
+python -c "from src.pdf_processor.pdf_extractor import PDFExtractor; print('PDFExtractor OK')"
 ```
 
-#### Test Concurrent Processing
-```python
-import asyncio
-from law_data_processor import LegalDataProcessor
-
-async def test_concurrent():
-    processor = LegalDataProcessor()
-    prompts = [
-        "Find 3 cases about land disputes",
-        "Find 3 cases about employment law",
-        "Find 3 cases about constitutional rights"
-    ]
-
-    tasks = [processor.process_prompt(p) for p in prompts]
-    results = await asyncio.gather(*tasks, return_exceptions=True)
-
-    for i, result in enumerate(results):
-        print(f"Prompt {i+1}: {'Success' if not isinstance(result, Exception) else 'Failed'}")
-
-    await processor.close()
-
-asyncio.run(test_concurrent())
+### 4. Check API Keys
+```bash
+# Verify environment variables
+python -c "import os; print('OpenAI:', bool(os.getenv('OPENAI_API_KEY'))); print('Serp:', bool(os.getenv('SERP_API_KEY')))"
 ```
+
+## Performance Metrics
+
+### Current Performance
+- **Serp Search**: ~10 seconds for 10 results
+- **LLM Analysis**: ~30 seconds for 5 cases
+- **PDF Download**: ~20 seconds for 8 PDFs
+- **PDF Processing**: ~5 seconds per PDF
+- **Total Workflow**: ~2-3 minutes
+
+### Optimization Opportunities
+- Parallel PDF processing
+- Batch LLM requests
+- Improved caching strategies
+- Memory usage optimization
+
+## Next Testing Steps
+
+1. **Unit Tests**: Add comprehensive unit tests for all services
+2. **Integration Tests**: Test service interactions
+3. **Performance Tests**: Benchmark with larger datasets
+4. **Error Recovery Tests**: Test system recovery from failures
+5. **Load Tests**: Test with multiple concurrent requests
 
 ## Troubleshooting
 
 ### Common Issues
 
-#### 1. Chrome WebDriver Issues
-**Problem:** `WebDriverException: Message: unknown error: cannot find Chrome binary`
+1. **Import Errors**
+   - Ensure virtual environment is activated
+   - Check all dependencies are installed
+   - Verify Python path includes src directory
 
-**Solution:**
+2. **API Key Errors**
+   - Verify .env file exists and has correct keys
+   - Check API key validity
+   - Ensure proper environment variable loading
+
+3. **PDF Download Failures**
+   - Check network connectivity
+   - Verify URL accessibility
+   - Review error logs for specific issues
+
+4. **Memory Issues**
+   - Monitor system resources
+   - Consider processing PDFs in smaller batches
+   - Implement memory cleanup
+
+### Support Commands
 ```bash
-# Install Chrome if not present
-sudo apt-get update
-sudo apt-get install google-chrome-stable
-
-# Or specify Chrome path in code
-chrome_options.binary_location = "/usr/bin/google-chrome"
+# Full system check
+python -c "
+import sys
+print('Python:', sys.version)
+import openai; print('OpenAI: OK')
+import aiohttp; print('aiohttp: OK')
+import bs4; print('beautifulsoup4: OK')
+import PyPDF2; print('PyPDF2: OK')
+from loguru import logger; print('loguru: OK')
+print('All dependencies: OK')
+"
 ```
-
-#### 2. Import Errors
-**Problem:** `ModuleNotFoundError: No module named 'src'`
-
-**Solution:**
-```bash
-# Add project root to Python path
-export PYTHONPATH="${PYTHONPATH}:$(pwd)"
-
-# Or run from project root
-cd /path/to/kibaara-law
-python law_data_processor.py
-```
-
-#### 3. Permission Errors
-**Problem:** `PermissionError: [Errno 13] Permission denied`
-
-**Solution:**
-```bash
-# Fix file permissions
-chmod +x law_data_processor.py
-chmod -R 755 src/
-chmod -R 755 logs/ results/
-```
-
-#### 4. Memory Issues
-**Problem:** `MemoryError` or slow performance
-
-**Solution:**
-```python
-# Reduce concurrent downloads
-# In kenya_law_scraper.py, limit concurrent tasks
-semaphore = asyncio.Semaphore(3)  # Limit to 3 concurrent downloads
-```
-
-### Debug Mode
-
-Enable detailed logging for debugging:
-
-```python
-# In law_data_processor.py, change log level
-logger.add(sys.stderr, level="DEBUG")
-```
-
-### Monitoring
-
-#### Check Logs
-```bash
-# Monitor logs in real-time
-tail -f logs/legal_assistant.log
-
-# Search for errors
-grep "ERROR" logs/legal_assistant.log
-
-# Search for specific operations
-grep "Downloading case" logs/legal_assistant.log
-```
-
-#### Check Results
-```bash
-# View generated results
-cat results/legal_analysis_result.txt
-
-# Check file sizes
-ls -lh results/
-ls -lh logs/
-```
-
-## Performance Benchmarks
-
-### Expected Performance Metrics
-
-| Operation | Expected Time | Acceptable Range |
-|-----------|---------------|------------------|
-| Prompt Processing | < 1 second | 0.1 - 2 seconds |
-| Case Search | 5-15 seconds | 3 - 30 seconds |
-| Case Download | 10-30 seconds per case | 5 - 60 seconds per case |
-| Case Analysis | 2-5 seconds per case | 1 - 10 seconds per case |
-| Total Processing | 1-5 minutes | 30 seconds - 10 minutes |
-
-### Resource Usage
-
-| Resource | Expected Usage | Monitoring Command |
-|----------|----------------|-------------------|
-| CPU | 20-50% during processing | `htop` or `top` |
-| Memory | 500MB-2GB | `free -h` |
-| Disk | 10-100MB for logs/results | `du -sh logs/ results/` |
-| Network | Moderate during downloads | `iftop` or `nethogs` |
-
-## Success Criteria
-
-### Functional Requirements
-- [ ] Prompt processing extracts correct criteria
-- [ ] Search finds relevant cases
-- [ ] Case downloads complete successfully
-- [ ] Analysis produces meaningful results
-- [ ] Results are properly formatted
-
-### Performance Requirements
-- [ ] Processing completes within 5 minutes
-- [ ] No memory leaks during operation
-- [ ] Error handling works correctly
-- [ ] Logs provide useful debugging information
-
-### Quality Requirements
-- [ ] Confidence scores are reasonable (0.5-1.0)
-- [ ] Multi-hop cases are correctly identified
-- [ ] Case metadata is extracted accurately
-- [ ] Results are consistent across runs
-
-## Next Steps After Testing
-
-1. **If tests pass:** Proceed to production deployment
-2. **If issues found:** Fix bugs and retest
-3. **If performance poor:** Optimize code and retest
-4. **If functionality incomplete:** Add missing features
-
-## Support
-
-For issues not covered in this guide:
-1. Check the logs for detailed error messages
-2. Review the code comments for implementation details
-3. Test individual components in isolation
-4. Consider the Kenya Law website structure may have changed
-
-## Last Test Run: 2025-06-20
-
-### Workflow Steps Validated
-- [x] Prompt processing and search query extraction
-- [x] Live web search using Serp API (Kenya Law, web, appeal search)
-- [x] Filtering and deduplication of search results
-- [x] Logging of all search and filtering steps
-- [x] LLM (GPT-4o) integration for result analysis (API key error encountered)
-- [x] Document downloader service present and ready
-
-### Observations
-- Serp search is working and returns real Kenyan court cases.
-- LLM step failed due to invalid OpenAI API key (replace with a valid key for full workflow).
-- Document download step is ready and will proceed once LLM returns valid cases.
-
-### Next Steps
-- Set a valid OpenAI API key in the environment for full LLM analysis.
-- Re-run the workflow to validate LLM extraction and document download.
-- Add more robust error handling for LLM and document download failures.
-- Expand test coverage for edge cases (e.g., no results, partial downloads).

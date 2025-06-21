@@ -1,0 +1,58 @@
+{
+  "metadata": {
+    "created": "2025-06-21T00:57:32.981675",
+    "last_updated": "2025-06-21T00:57:47.592871",
+    "version": "1.0"
+  },
+  "cases": {
+    "pdf_download_a8c4d43a65df6b18140a8e3b05cb4f9b": {
+      "case_title": "Civil Appeal 232 of 2016 - Nairobi",
+      "success": true,
+      "pdfs_downloaded": 4,
+      "total_pdfs_found": 4,
+      "pdf_files": [
+        {
+          "filename": "Civil_Appeal_232_of_2016_-_Nairobi_194677_standard.pdf",
+          "filepath": "data/raw/Civil_Appeal_232_of_2016_-_Nairobi_194677_standard.pdf",
+          "type": "standard",
+          "url": "https://kenyalaw.org/caselaw/cases/export/194677/pdf",
+          "size": 42701,
+          "cached": false
+        },
+        {
+          "filename": "Civil_Appeal_232_of_2016_-_Nairobi_194677_with_metadata.pdf",
+          "filepath": "data/raw/Civil_Appeal_232_of_2016_-_Nairobi_194677_with_metadata.pdf",
+          "type": "with_metadata",
+          "url": "https://kenyalaw.org/caselaw/cases/export_meta/194677/pdf",
+          "size": 43974,
+          "cached": false
+        },
+        {
+          "filename": "Civil_Appeal_232_of_2016_-_Nairobi_194677_standard.pdf",
+          "filepath": "data/raw/Civil_Appeal_232_of_2016_-_Nairobi_194677_standard.pdf",
+          "type": "standard",
+          "url": "https://kenyalaw.org/caselaw/cases/export/194677/pdf",
+          "size": 42701,
+          "cached": true
+        },
+        {
+          "filename": "Civil_Appeal_232_of_2016_-_Nairobi_194677_with_metadata.pdf",
+          "filepath": "data/raw/Civil_Appeal_232_of_2016_-_Nairobi_194677_with_metadata.pdf",
+          "type": "with_metadata",
+          "url": "https://kenyalaw.org/caselaw/cases/export_meta/194677/pdf",
+          "size": 43974,
+          "cached": true
+        }
+      ],
+      "appellate_url": "https://kenyalaw.org/caselaw/cases/view/194677/",
+      "download_timestamp": "2025-06-21T00:57:47.592818",
+      "cached_at": "2025-06-21T00:57:47.592859",
+      "cache_key": "pdf_download_a8c4d43a65df6b18140a8e3b05cb4f9b"
+    }
+  },
+  "statistics": {
+    "total_cases": 1,
+    "downloaded_cases": 0,
+    "analyzed_cases": 0
+  }
+}

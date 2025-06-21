@@ -1,0 +1,257 @@
+{
+  "workflow_summary": {
+    "total_cases_found": 5,
+    "cases_with_2hop_litigation": 5,
+    "cases_ending_in_appellate": 1,
+    "pdfs_downloaded": 1,
+    "cases_analyzed": 0,
+    "pdfs_analyzed": 0,
+    "steps_completed": [
+      "prompt_processing",
+      "serp_llm_search",
+      "filtering",
+      "pdf_download",
+      "case_analysis",
+      "pdf_analysis"
+    ]
+  },
+  "llm_search_results": [
+    {
+      "title": "Civil Appeal 232 of 2016 - Nairobi",
+      "appellate_court": {
+        "court": "Court of Appeal",
+        "case_number": "Civil Appeal 232 of 2016",
+        "date": "Not specified",
+        "url": "https://kenyalaw.org/caselaw/cases/view/194677/"
+      },
+      "trial_reference": {
+        "court": "High Court",
+        "case_number": "Not specified",
+        "date": "Not specified"
+      },
+      "description": "The appellate court reviewed the award of damages from the trial court, indicating a progression from trial to appellate court.",
+      "confidence": "Medium"
+    },
+    {
+      "title": "Civil Appeal 12 of 2022",
+      "appellate_court": {
+        "court": "High Court",
+        "case_number": "Civil Appeal 12 of 2022",
+        "date": "Not specified",
+        "url": "https://kenyalaw.org/caselaw/cases/view/282235/index.php?id=3479"
+      },
+      "trial_reference": {
+        "court": "Magistrate's Court",
+        "case_number": "Mutomo PMCC NO. E007 OF 2022",
+        "date": "8th June 2022"
+      },
+      "description": "This case is an appeal from the judgment of the Senior Resident Magistrate, showing a clear progression from trial to appellate court.",
+      "confidence": "High"
+    },
+    {
+      "title": "Civil Appeal 193 of 2017",
+      "appellate_court": {
+        "court": "High Court",
+        "case_number": "Civil Appeal 193 of 2017",
+        "date": "Not specified",
+        "url": "https://kenyalaw.org/caselaw/cases/view/253591/"
+      },
+      "trial_reference": {
+        "court": "High Court",
+        "case_number": "Succession Cause no. 66 of 2014 and Succession Cause no. 7 of 1996",
+        "date": "Not specified"
+      },
+      "description": "The appeal is based on two succession causes, indicating a progression from trial to appellate court.",
+      "confidence": "Medium"
+    },
+    {
+      "title": "Civil Appeal 21 of 2018",
+      "appellate_court": {
+        "court": "High Court",
+        "case_number": "Civil Appeal 21 of 2018",
+        "date": "Not specified",
+        "url": "https://kenyalaw.org/caselaw/cases/view/185689/"
+      },
+      "trial_reference": {
+        "court": "Children's Court",
+        "case_number": "Not specified",
+        "date": "21st February 2018"
+      },
+      "description": "The appellant sought to set aside the judgment of the Children's Court, showing a progression from trial to appellate court.",
+      "confidence": "Medium"
+    },
+    {
+      "title": "Mwangi v Republic (Criminal Appeal 48 of 2019)",
+      "appellate_court": {
+        "court": "High Court",
+        "case_number": "Criminal Appeal 48 of 2019",
+        "date": "2023-04-20",
+        "url": "https://new.kenyalaw.org/akn/ke/judgment/kehc/2023/3262/eng@2023-04-20"
+      },
+      "trial_reference": {
+        "court": "Magistrate's Court",
+        "case_number": "Not specified",
+        "date": "Not specified"
+      },
+      "description": "The appellant was charged with defilement, and the case progressed from the Magistrate's Court to the High Court.",
+      "confidence": "Medium"
+    }
+  ],
+  "filtered_cases": [
+    {
+      "title": "Civil Appeal 232 of 2016 - Nairobi",
+      "appellate_court": {
+        "court": "Court of Appeal",
+        "case_number": "Civil Appeal 232 of 2016",
+        "date": "Not specified",
+        "url": "https://kenyalaw.org/caselaw/cases/view/194677/"
+      },
+      "trial_reference": {
+        "court": "High Court",
+        "case_number": "Not specified",
+        "date": "Not specified"
+      },
+      "description": "The appellate court reviewed the award of damages from the trial court, indicating a progression from trial to appellate court.",
+      "confidence": "Medium"
+    }
+  ],
+  "download_results": [
+    {
+      "case_title": "Civil Appeal 232 of 2016 - Nairobi",
+      "success": true,
+      "pdfs_downloaded": 4,
+      "total_pdfs_found": 4,
+      "pdf_files": [
+        {
+          "filename": "Civil_Appeal_232_of_2016_-_Nairobi_194677_standard.pdf",
+          "filepath": "data/raw/Civil_Appeal_232_of_2016_-_Nairobi_194677_standard.pdf",
+          "type": "standard",
+          "url": "https://kenyalaw.org/caselaw/cases/export/194677/pdf",
+          "size": 42701,
+          "cached": false
+        },
+        {
+          "filename": "Civil_Appeal_232_of_2016_-_Nairobi_194677_with_metadata.pdf",
+          "filepath": "data/raw/Civil_Appeal_232_of_2016_-_Nairobi_194677_with_metadata.pdf",
+          "type": "with_metadata",
+          "url": "https://kenyalaw.org/caselaw/cases/export_meta/194677/pdf",
+          "size": 43974,
+          "cached": false
+        },
+        {
+          "filename": "Civil_Appeal_232_of_2016_-_Nairobi_194677_standard.pdf",
+          "filepath": "data/raw/Civil_Appeal_232_of_2016_-_Nairobi_194677_standard.pdf",
+          "type": "standard",
+          "url": "https://kenyalaw.org/caselaw/cases/export/194677/pdf",
+          "size": 42701,
+          "cached": true
+        },
+        {
+          "filename": "Civil_Appeal_232_of_2016_-_Nairobi_194677_with_metadata.pdf",
+          "filepath": "data/raw/Civil_Appeal_232_of_2016_-_Nairobi_194677_with_metadata.pdf",
+          "type": "with_metadata",
+          "url": "https://kenyalaw.org/caselaw/cases/export_meta/194677/pdf",
+          "size": 43974,
+          "cached": true
+        }
+      ],
+      "appellate_url": "https://kenyalaw.org/caselaw/cases/view/194677/",
+      "download_timestamp": "2025-06-21T00:57:47.592818",
+      "cached_at": "2025-06-21T00:57:47.592859",
+      "cache_key": "pdf_download_a8c4d43a65df6b18140a8e3b05cb4f9b"
+    }
+  ],
+  "case_analysis": [
+    {
+      "case_title": "Civil Appeal 232 of 2016 - Nairobi",
+      "appellate_court": {
+        "court": "Court of Appeal",
+        "case_number": "Civil Appeal 232 of 2016",
+        "date": "Not specified",
+        "url": "https://kenyalaw.org/caselaw/cases/view/194677/"
+      },
+      "trial_reference": {
+        "court": "High Court",
+        "case_number": "Not specified",
+        "date": "Not specified"
+      },
+      "appellate_document": {},
+      "processing_time": 3e-06,
+      "confidence_score": 0.8,
+      "extraction_notes": [
+        "Successfully analyzed case: Civil Appeal 232 of 2016 - Nairobi",
+        "Appellate court: Court of Appeal",
+        "Trial reference: High Court",
+        "Document downloaded: No"
+      ],
+      "quality_indicators": {
+        "has_appellate_info": true,
+        "has_trial_reference": true,
+        "has_document": false,
+        "is_2_hop": true
+      }
+    }
+  ],
+  "pdf_analysis": [
+    {
+      "success": false,
+      "case_title": "Civil_Appeal_232_of_2016_-_Nairobi_194677_standard",
+      "error": "PDFExtractor.process_pdf_file() missing 1 required positional argument: 'case_title'",
+      "timestamp": "2025-06-21 01:07:17"
+    },
+    {
+      "success": false,
+      "case_title": "Civil_Appeal_232_of_2016_-_Nairobi_with_metadata",
+      "error": "PDFExtractor.process_pdf_file() missing 1 required positional argument: 'case_title'",
+      "timestamp": "2025-06-21 01:07:17"
+    },
+    {
+      "success": false,
+      "case_title": "Civil_Appeal_69_of_2005",
+      "error": "PDFExtractor.process_pdf_file() missing 1 required positional argument: 'case_title'",
+      "timestamp": "2025-06-21 01:07:17"
+    },
+    {
+      "success": false,
+      "case_title": "Civil_Appeal_232_of_2016_-_Nairobi_194677_with_metadata",
+      "error": "PDFExtractor.process_pdf_file() missing 1 required positional argument: 'case_title'",
+      "timestamp": "2025-06-21 01:07:17"
+    },
+    {
+      "success": false,
+      "case_title": "Civil_Appeal_21_of_2018",
+      "error": "PDFExtractor.process_pdf_file() missing 1 required positional argument: 'case_title'",
+      "timestamp": "2025-06-21 01:07:17"
+    },
+    {
+      "success": false,
+      "case_title": "Civil_Appeal_69_of_2005_with_metadata",
+      "error": "PDFExtractor.process_pdf_file() missing 1 required positional argument: 'case_title'",
+      "timestamp": "2025-06-21 01:07:17"
+    },
+    {
+      "success": false,
+      "case_title": "Civil_Appeal_21_of_2018_with_metadata",
+      "error": "PDFExtractor.process_pdf_file() missing 1 required positional argument: 'case_title'",
+      "timestamp": "2025-06-21 01:07:17"
+    },
+    {
+      "success": false,
+      "case_title": "Civil_Appeal_232_of_2016_-_Nairobi",
+      "error": "PDFExtractor.process_pdf_file() missing 1 required positional argument: 'case_title'",
+      "timestamp": "2025-06-21 01:07:17"
+    },
+    {
+      "success": false,
+      "case_title": "Criminal_Appeal_30___31_of_2019__Consolidated__with_metadata",
+      "error": "PDFExtractor.process_pdf_file() missing 1 required positional argument: 'case_title'",
+      "timestamp": "2025-06-21 01:07:17"
+    },
+    {
+      "success": false,
+      "case_title": "Criminal_Appeal_30___31_of_2019__Consolidated_",
+      "error": "PDFExtractor.process_pdf_file() missing 1 required positional argument: 'case_title'",
+      "timestamp": "2025-06-21 01:07:17"
+    }
+  ]
+}

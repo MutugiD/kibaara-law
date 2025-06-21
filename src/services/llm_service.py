@@ -186,6 +186,23 @@ class LLMService:
             logger.error(f"Failed to extract litigation hops: {str(e)}")
             return []
 
+    async def analyze_with_gpt4o(self, prompt: str) -> str:
+        """
+        Analyze content using GPT-4o.
+
+        Args:
+            prompt: The prompt to send to GPT-4o
+
+        Returns:
+            Response from GPT-4o
+        """
+        try:
+            response = await self._make_api_call(prompt)
+            return response
+        except Exception as e:
+            logger.error(f"Failed to analyze with GPT-4o: {str(e)}")
+            return ""
+
     async def search_kenyan_cases_with_serp(self, search_query: str, max_results: int = 10) -> List[Dict[str, Any]]:
         """
         Search for Kenyan court cases using Serp API + GPT-4o analysis.

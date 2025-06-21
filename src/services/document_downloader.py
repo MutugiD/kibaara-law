@@ -66,6 +66,9 @@ class DocumentDownloader:
             # Extract document metadata
             metadata = self._extract_metadata(url, content)
 
+            # Extract pleadings and legal content
+            legal_content = self._extract_legal_content(content)
+
             # Save document to file
             filename = self._save_document(url, content)
 
@@ -73,12 +76,14 @@ class DocumentDownloader:
                 "url": url,
                 "content": content,
                 "metadata": metadata,
+                "legal_content": legal_content,
                 "filename": filename,
                 "download_timestamp": datetime.now().isoformat(),
                 "content_length": len(content)
             }
 
             logger.info(f"Successfully downloaded document: {filename}")
+            logger.info(f"Extracted {len(legal_content.get('pleadings', []))} pleadings")
             return document_info
 
         except Exception as e:
@@ -94,16 +99,34 @@ class DocumentDownloader:
             return False
 
     async def _download_content(self, url: str) -> Optional[str]:
-        """Download content from URL with retries."""
+        """Download content from URL with retries and proper headers."""
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.5',
+            'Accept-Encoding': 'gzip, deflate',
+            'Connection': 'keep-alive',
+            'Upgrade-Insecure-Requests': '1',
+        }
+
         for attempt in range(self.max_retries):
             try:
                 timeout = aiohttp.ClientTimeout(total=self.session_timeout)
-                async with aiohttp.ClientSession(timeout=timeout) as session:
+                async with aiohttp.ClientSession(timeout=timeout, headers=headers) as session:
                     async with session.get(url) as response:
                         if response.status == 200:
                             content = await response.text()
                             logger.info(f"Downloaded {len(content)} characters from {url}")
                             return content
+                        elif response.status == 403:
+                            logger.warning(f"HTTP 403 Forbidden for {url} (attempt {attempt + 1})")
+                            # Try with different headers for 403
+                            if attempt == 1:
+                                headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+                                headers['Referer'] = 'https://kenyalaw.org/'
+                            elif attempt == 2:
+                                headers['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+                                headers['Referer'] = 'https://new.kenyalaw.org/'
                         else:
                             logger.warning(f"HTTP {response.status} for {url}")
 
@@ -159,6 +182,72 @@ class DocumentDownloader:
                 break
 
         return metadata
+
+    def _extract_legal_content(self, content: str) -> Dict[str, Any]:
+        """Extract legal content including pleadings, judgments, and procedural information."""
+        legal_content = {
+            "pleadings": [],
+            "judgments": [],
+            "procedural_steps": [],
+            "key_legal_phrases": []
+        }
+
+        # Remove HTML tags for text analysis
+        clean_content = re.sub(r'<[^>]+>', ' ', content)
+        clean_content = re.sub(r'\s+', ' ', clean_content).strip()
+
+        # Extract pleadings
+        pleading_patterns = [
+            r'(?:pleading|plea|petition|application|motion|notice)\s+(?:of|for|to)\s+[^.]*\.',
+            r'(?:plaintiff|petitioner|applicant|appellant)\s+(?:alleges|contends|submits|argues)\s+[^.]*\.',
+            r'(?:defendant|respondent)\s+(?:denies|admits|contests|opposes)\s+[^.]*\.',
+            r'(?:prayer|relief|order|judgment)\s+(?:sought|requested|granted|denied)\s+[^.]*\.'
+        ]
+
+        for pattern in pleading_patterns:
+            matches = re.findall(pattern, clean_content, re.IGNORECASE)
+            legal_content["pleadings"].extend(matches)
+
+        # Extract judgments
+        judgment_patterns = [
+            r'(?:judgment|ruling|decision|order)\s+(?:of|by|in)\s+[^.]*\.',
+            r'(?:court|judge|magistrate)\s+(?:held|found|determined|concluded)\s+[^.]*\.',
+            r'(?:appeal|application|petition)\s+(?:allowed|dismissed|granted|denied)\s+[^.]*\.'
+        ]
+
+        for pattern in judgment_patterns:
+            matches = re.findall(pattern, clean_content, re.IGNORECASE)
+            legal_content["judgments"].extend(matches)
+
+        # Extract procedural steps
+        procedural_patterns = [
+            r'(?:filed|lodged|submitted|served|heard|adjourned|reserved)\s+[^.]*\.',
+            r'(?:trial|hearing|proceedings)\s+(?:commenced|concluded|adjourned)\s+[^.]*\.',
+            r'(?:evidence|testimony|witness)\s+(?:presented|adduced|examined)\s+[^.]*\.'
+        ]
+
+        for pattern in procedural_patterns:
+            matches = re.findall(pattern, clean_content, re.IGNORECASE)
+            legal_content["procedural_steps"].extend(matches)
+
+        # Extract key legal phrases
+        legal_phrases = [
+            'beyond reasonable doubt', 'balance of probabilities', 'prima facie',
+            'ultra vires', 'sub judice', 'res judicata', 'stare decisis',
+            'locus standi', 'mens rea', 'actus reus', 'ex parte',
+            'inter partes', 'in camera', 'amicus curiae'
+        ]
+
+        for phrase in legal_phrases:
+            if phrase.lower() in clean_content.lower():
+                legal_content["key_legal_phrases"].append(phrase)
+
+        # Limit results to avoid overwhelming output
+        for key in legal_content:
+            if isinstance(legal_content[key], list):
+                legal_content[key] = legal_content[key][:10]  # Keep top 10
+
+        return legal_content
 
     def _save_document(self, url: str, content: str) -> str:
         """Save document content to file."""
