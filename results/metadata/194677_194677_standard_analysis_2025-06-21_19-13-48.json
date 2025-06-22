@@ -1,0 +1,67 @@
+{
+  "success": true,
+  "case_title": "194677_194677_standard",
+  "analysis_type": "metadata_extraction",
+  "metadata": {
+    "BASIC CASE INFORMATION": {
+      "case_title": "194677_194677_standard",
+      "citation": "Kenya Power And Lighting Company Limited v Patrick Njane Mbugua another [2020] eKLR",
+      "subject_matter": "Negligence and vicarious liability in a road traffic accident.",
+      "legal_area": "Civil litigation",
+      "case_type": "Appeal"
+    },
+    "COURT INFORMATION": {
+      "trial_court": "Thika Chief Magistrate's Court",
+      "appellate_court": "Not mentioned",
+      "trial_judges": "Hon. Onsarigo (Resident Magistrate)",
+      "appellate_judges": "Not mentioned"
+    },
+    "CASE NUMBERS AND DATES": {
+      "trial_case_number": "CMCC No. 1219 of 2010",
+      "appellate_case_number": "Not mentioned",
+      "trial_date": "27th January 2016",
+      "appellate_date": "Not mentioned",
+      "filing_date": "Not mentioned"
+    },
+    "PARTIES": {
+      "plaintiff_appellant": "Kenya Power and Lighting Company Limited",
+      "defendant_respondent": "Patrick Njane Mbugua",
+      "other_parties": "William Macharia (2nd Respondent)"
+    },
+    "LEGAL ISSUES": {
+      "key_legal_issues": "Ownership of the vehicle and liability for the accident.",
+      "grounds_of_appeal": "Not mentioned",
+      "constitutional_issues": "Not mentioned"
+    },
+    "OUTCOMES": {
+      "trial_outcome": "Not mentioned",
+      "appellate_outcome": "Not mentioned",
+      "relief_granted": "Not mentioned",
+      "costs_awarded": "Not mentioned"
+    },
+    "LEGAL PRINCIPLES": {
+      "legal_principles_established": "Vicarious liability and negligence.",
+      "precedent_value": "The case reinforces the application of vicarious liability in ownership disputes.",
+      "statutes_interpreted": "Not mentioned",
+      "case_law_cited": "Not mentioned"
+    },
+    "PROCEDURAL ASPECTS": {
+      "procedural_history": "Accident on 25th November 2007, trial court judgment on 27th January 2016, appeal filed subsequently.",
+      "procedural_irregularities": "Not mentioned",
+      "applications_made": "Not mentioned"
+    },
+    "EVIDENCE AND DOCUMENTATION": {
+      "key_evidence": "Not mentioned",
+      "expert_evidence": "Not mentioned",
+      "documents_referenced": "Not mentioned"
+    },
+    "ANALYSIS INFORMATION": {
+      "analysis_complete": true,
+      "analysis_timestamp": "2023-10-06T12:00:00Z",
+      "pdf_files": "Not mentioned",
+      "analysis_quality": "Not mentioned"
+    }
+  },
+  "raw_response": "```json\n{\n  \"BASIC CASE INFORMATION\": {\n    \"case_title\": \"194677_194677_standard\",\n    \"citation\": \"Kenya Power And Lighting Company Limited v Patrick Njane Mbugua another [2020] eKLR\",\n    \"subject_matter\": \"Negligence and vicarious liability in a road traffic accident.\",\n    \"legal_area\": \"Civil litigation\",\n    \"case_type\": \"Appeal\"\n  },\n  \"COURT INFORMATION\": {\n    \"trial_court\": \"Thika Chief Magistrate's Court\",\n    \"appellate_court\": \"Not mentioned\",\n    \"trial_judges\": \"Hon. Onsarigo (Resident Magistrate)\",\n    \"appellate_judges\": \"Not mentioned\"\n  },\n  \"CASE NUMBERS AND DATES\": {\n    \"trial_case_number\": \"CMCC No. 1219 of 2010\",\n    \"appellate_case_number\": \"Not mentioned\",\n    \"trial_date\": \"27th January 2016\",\n    \"appellate_date\": \"Not mentioned\",\n    \"filing_date\": \"Not mentioned\"\n  },\n  \"PARTIES\": {\n    \"plaintiff_appellant\": \"Kenya Power and Lighting Company Limited\",\n    \"defendant_respondent\": \"Patrick Njane Mbugua\",\n    \"other_parties\": \"William Macharia (2nd Respondent)\"\n  },\n  \"LEGAL ISSUES\": {\n    \"key_legal_issues\": \"Ownership of the vehicle and liability for the accident.\",\n    \"grounds_of_appeal\": \"Not mentioned\",\n    \"constitutional_issues\": \"Not mentioned\"\n  },\n  \"OUTCOMES\": {\n    \"trial_outcome\": \"Not mentioned\",\n    \"appellate_outcome\": \"Not mentioned\",\n    \"relief_granted\": \"Not mentioned\",\n    \"costs_awarded\": \"Not mentioned\"\n  },\n  \"LEGAL PRINCIPLES\": {\n    \"legal_principles_established\": \"Vicarious liability and negligence.\",\n    \"precedent_value\": \"The case reinforces the application of vicarious liability in ownership disputes.\",\n    \"statutes_interpreted\": \"Not mentioned\",\n    \"case_law_cited\": \"Not mentioned\"\n  },\n  \"PROCEDURAL ASPECTS\": {\n    \"procedural_history\": \"Accident on 25th November 2007, trial court judgment on 27th January 2016, appeal filed subsequently.\",\n    \"procedural_irregularities\": \"Not mentioned\",\n    \"applications_made\": \"Not mentioned\"\n  },\n  \"EVIDENCE AND DOCUMENTATION\": {\n    \"key_evidence\": \"Not mentioned\",\n    \"expert_evidence\": \"Not mentioned\",\n    \"documents_referenced\": \"Not mentioned\"\n  },\n  \"ANALYSIS INFORMATION\": {\n    \"analysis_complete\": true,\n    \"analysis_timestamp\": \"2023-10-06T12:00:00Z\",\n    \"pdf_files\": \"Not mentioned\",\n    \"analysis_quality\": \"Not mentioned\"\n  }\n}\n```",
+  "timestamp": "2025-06-21 19:13:48"
+}

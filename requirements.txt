@@ -32,3 +32,11 @@ black==25.1.0
 
 # Added from the code block
 python-dotenv==1.1.0
+
+# Added from the code block
+fastapi
+uvicorn
+sqlalchemy
+aiofiles
+python-multipart
+PyPDF2

@@ -63,6 +63,125 @@ The Legal Assistant will provide an intelligent, automated solution that:
 - **Customization**: Allow users to specify output format preferences
 - **Export Capabilities**: Enable result export for further analysis
 
+## FastAPI Backend Architecture - Three-Tier Approach
+
+### Tier 1: Raw Data Layer (Data Access)
+**Purpose**: Serve as the foundation for all legal data access and storage
+
+**Key Endpoints**:
+- `/api/v1/cases/raw` - Access to original PDF documents and metadata
+- `/api/v1/cases/search` - Direct search interface to legal databases
+- `/api/v1/cases/download` - PDF download management
+- `/api/v1/cases/pleadings` - Extracted pleadings and claims
+- `/api/v1/cases/upload` - User case and pleading upload functionality
+
+**Data Types**:
+- Original PDF files (both standard and with metadata versions)
+- Case metadata (titles, citations, court levels, dates)
+- Search results from Kenya Law and other legal databases
+- Download tracking and cache management
+- User-uploaded cases and pleadings
+
+**Benefits**:
+- Provides direct access to source materials
+- Enables custom analysis workflows
+- Supports bulk data operations
+- Maintains data integrity and provenance
+- Allows user contribution to case database
+
+### Tier 2: Analysis Layer (Intelligence)
+**Purpose**: Provide processed, analyzed, and structured legal insights
+
+**Key Endpoints**:
+- `/api/v1/analysis/pleadings` - Extracted pleadings and claims, if extractable
+- `/api/v1/analysis/rulings` - Trial and appellate court decisions
+- `/api/v1/analysis/summaries` - Comprehensive case summaries
+- `/api/v1/analysis/litigation-hops` - Multi-court progression tracking
+- `/api/v1/analysis/relationships` - Case relationships and precedents
+
+**Data Types**:
+- Structured pleadings analysis (JSON format)
+- Ruling classifications and outcomes
+- Litigation hop mappings
+- Case relationship graphs
+- Confidence scores and validation metrics
+
+**Benefits**:
+- Pre-processed insights for quick access
+- Structured data for frontend consumption
+- Cached results for performance
+- Standardized analysis formats
+
+### Tier 3: Application Layer (User Interface)
+**Purpose**: Provide user-friendly interfaces and downloadable content
+
+**Key Endpoints**:
+- `/api/v1/export/pdf` - Generate downloadable PDF reports
+- `/api/v1/export/json` - Structured data exports
+- `/api/v1/export/csv` - Tabular data exports
+- `/api/v1/reports/comprehensive` - Full case analysis reports
+
+**Data Types**:
+- Formatted reports in multiple formats
+- Executive summaries and key insights
+- Comparative analysis across cases
+- Custom report generation
+
+**Benefits**:
+- User-friendly data presentation
+- Multiple export formats
+- Customizable report generation
+- Professional presentation quality
+
+## Frontend Architecture
+
+### Technology Stack
+- **Framework**: React with TypeScript (for type safety and maintainability)
+- **UI Library**: Material-UI or Ant Design (for professional legal interface)
+- **PDF Viewer**: React-PDF (for inline document viewing)
+- **Document Downloader**: Download documents functionality
+
+### Frontend Structure
+
+#### 1. Search & Discovery Interface
+- **Advanced Search Form**: Multi-criteria search with filters
+- **Search Results Grid**: Paginated results with preview cards
+- **Filter Panel**: Court level, date range, case type filters
+- **Saved Searches**: User bookmarking and search history
+
+#### 2. Case Analysis Dashboard
+- **Case Overview**: Key metadata and summary
+- **Litigation Flow Visualization**: Interactive timeline showing court progression
+- **Document Viewer**: Inline PDF viewing with annotations
+- **Analysis Tabs**: Pleadings, Rulings, Summary sections
+
+#### 3. Export & Reporting Interface
+- **Report Builder**: Custom report generation wizard
+- **Format Selection**: PDF, JSON, CSV export options
+- **Template Library**: Pre-built report templates
+- **Batch Operations**: Multiple case export capabilities
+
+#### 4. Case Upload Interface
+- **File Upload**: Drag-and-drop PDF upload functionality
+- **Metadata Entry**: Case information input forms
+- **Pleading Extraction**: Automated pleading identification
+- **Validation**: File format and content validation
+
+## Data Flow Architecture
+
+### Request Flow
+1. **User Input** → Frontend validation and formatting
+2. **API Request** → FastAPI endpoint without authentication (security to be added later)
+3. **Service Layer** → Business logic and data processing
+4. **Data Layer** → Cache operations (database not needed for MVP)
+5. **Response** → Structured data back to frontend
+6. **Presentation** → Frontend rendering and user interaction
+
+### Caching Strategy
+- **Tier 1**: Raw PDFs and metadata (long-term cache)
+- **Tier 2**: Analysis results (medium-term cache with invalidation)
+- **Tier 3**: Generated reports (short-term cache)
+
 ## Functional Requirements
 
 ### FR-1: Prompt Processing
@@ -98,6 +217,18 @@ The Legal Assistant will provide an intelligent, automated solution that:
 - System shall implement retry logic for transient failures
 - System shall log errors for debugging and monitoring
 
+### FR-6: FastAPI Integration
+- System shall provide RESTful API endpoints for all core functionalities
+- System shall support JSON request/response formats
+- System shall implement proper HTTP status codes
+- System shall provide comprehensive API documentation
+
+### FR-7: Frontend Interface
+- System shall provide responsive web interface for all features
+- System shall support real-time search and filtering
+- System shall provide inline PDF viewing capabilities
+- System shall support multiple export formats
+
 ## Non-Functional Requirements
 
 ### Performance
@@ -108,9 +239,9 @@ The Legal Assistant will provide an intelligent, automated solution that:
 
 ### Security
 - **Data Protection**: Encrypt sensitive legal data in transit and at rest
-- **Access Control**: Implement role-based access control
+- **Access Control**: Implement role-based access control (future enhancement)
 - **Audit Logging**: Log all user actions for compliance
-- **API Security**: Implement rate limiting and authentication
+- **API Security**: Implement rate limiting and authentication (future enhancement)
 
 ### Reliability
 - **Fault Tolerance**: Graceful degradation during partial failures
@@ -134,6 +265,8 @@ The Legal Assistant will provide an intelligent, automated solution that:
 5. **Result Formatter**: Output formatting and presentation
 6. **Cache Layer**: Performance optimization and data persistence
 7. **Monitoring**: System health and performance tracking
+8. **FastAPI Backend**: RESTful API service layer
+9. **React Frontend**: User interface and interaction layer
 
 ### Data Models
 - **Prompt**: User input with requirements and constraints
@@ -141,11 +274,13 @@ The Legal Assistant will provide an intelligent, automated solution that:
 - **LitigationHop**: Court level progression information
 - **SearchResult**: Query results with relevance scoring
 - **AnalysisResult**: Processed case data and insights
+- **APIRequest**: Standardized API request format
+- **APIResponse**: Standardized API response format
 
 ### Integration Points
 - **Kenya Law API**: Primary legal database integration
 - **External Legal Databases**: Secondary sources for comprehensive coverage
-- **Authentication Service**: User management and access control
+- **Authentication Service**: User management and access control (future)
 - **Logging Service**: Centralized logging and monitoring
 
 ## Success Metrics
@@ -175,18 +310,24 @@ The Legal Assistant will provide an intelligent, automated solution that:
 - Basic Kenya Law integration
 - Simple case analysis
 - Basic result formatting
+- FastAPI backend setup
+- Basic React frontend
 
 ### Phase 2: Enhanced Features (Months 4-6)
 - Advanced search capabilities
 - Improved case analysis
 - Multi-format output support
 - Performance optimization
+- Advanced frontend features
+- User upload functionality
 
 ### Phase 3: Scale and Polish (Months 7-9)
 - Advanced analytics and insights
 - Comprehensive testing and validation
 - Documentation and user guides
 - Production deployment
+- Security implementation
+- Database integration
 
 ## Risk Assessment
 
@@ -200,7 +341,7 @@ The Legal Assistant will provide an intelligent, automated solution that:
 - Implement intelligent caching and rate limiting
 - Robust error handling and data validation
 - Performance monitoring and optimization
-- Scalable architecture with load balancing
+- Scalable architecture design
 
 ## Future Enhancements
 

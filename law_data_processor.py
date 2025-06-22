@@ -1,313 +1,300 @@
 #!/usr/bin/env python3
 """
-Legal Assistant Backend - Main Data Processor
+Legal Assistant Backend - Main Entry Point
 
-This script orchestrates the complete workflow for finding and analyzing
-Kenyan court cases with multi-hop litigation processes.
+This script provides the main entry point for the Legal Assistant backend system.
+It orchestrates the complete workflow from prompt processing to final analysis.
 """
 
-import os
-import json
-import sys
-from pathlib import Path
-from typing import Dict, List, Any
-from dotenv import load_dotenv
-from loguru import logger
 import asyncio
+import argparse
+import json
+import os
 from datetime import datetime
+from typing import List, Dict, Any, Optional
+from loguru import logger
 
-# Load environment variables
-load_dotenv()
+# Import services
+from backend.services.prompt_processor import PromptProcessor
+from backend.services.llm_service import LLMService
+from backend.services.pdf_downloader import PDFDownloader
+from backend.services.case_analyzer import CaseAnalyzer
+from backend.services.pdf_analysis_service import PDFAnalysisService
+from backend.services.cache_service import CacheService
+from backend.utils.config import get_config
 
-# Add src to path for imports
-sys.path.append(str(Path(__file__).parent / "src"))
+# Configure logging
+logger.add("logs/legal_assistant.log", rotation="1 day", retention="7 days", level="INFO")
 
-# Import from the new modular structure
-from src import (
-    PromptProcessor,
-    SerpSearchService,
-    LLMService,
-    PDFDownloader,
-    CaseAnalyzer,
-    ResultFormatter,
-    CacheService,
-    PDFAnalysisService,
-    PDFExtractor,
-    PDFAnalyzer
-)
-
-
-def setup_logging() -> None:
-    """Setup logging configuration."""
-    logger.remove()  # Remove default handler
-    logger.add(
-        "logs/legal_assistant.log",
-        rotation="10 MB",
-        retention="7 days",
-        level="INFO",
-        format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}"
-    )
-    logger.add(
-        sys.stderr,
-        level="INFO",
-        format="{time:HH:mm:ss} | {level} | {message}"
+def setup_argument_parser() -> argparse.ArgumentParser:
+    """Set up command line argument parser"""
+    parser = argparse.ArgumentParser(
+        description="Legal Assistant Backend - Process legal research queries",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  python law_data_processor.py --query "contract dispute" --max_results 5
+  python law_data_processor.py --query "land ownership" --max_results 3 --download_pdfs
+  python law_data_processor.py --query "criminal appeal" --max_results 10 --no_analysis
+        """
     )
 
+    parser.add_argument(
+        "--query", "-q",
+        type=str,
+        default="Find Kenyan court cases with 2-hop litigation processes",
+        help="Search query for legal cases (default: Find Kenyan court cases with 2-hop litigation processes)"
+    )
 
-def load_config() -> Dict[str, str]:
-    """Load configuration from environment variables."""
-    config = {
-        'openai_api_key': os.getenv('OPENAI_API_KEY'),
-        'serp_api_key': os.getenv('SERP_API_KEY'),
-        'cache_file': os.getenv('CACHE_FILE', 'cache/legal_cases_cache.json'),
-        'results_dir': os.getenv('RESULTS_DIR', 'results'),
-        'data_dir': os.getenv('DATA_DIR', 'data'),
-        'logs_dir': os.getenv('LOGS_DIR', 'logs')
-    }
+    parser.add_argument(
+        "--max_results", "-m",
+        type=int,
+        default=5,
+        help="Maximum number of results to return (default: 5)"
+    )
 
-    # Validate required API keys
-    if not config['openai_api_key']:
-        raise ValueError("OPENAI_API_KEY environment variable is required")
-    if not config['serp_api_key']:
-        raise ValueError("SERP_API_KEY environment variable is required")
+    parser.add_argument(
+        "--download_pdfs", "-d",
+        action="store_true",
+        help="Download PDFs for found cases"
+    )
 
-    # Create directories
-    for dir_path in [config['results_dir'], config['data_dir'], config['logs_dir']]:
-        Path(dir_path).mkdir(parents=True, exist_ok=True)
+    parser.add_argument(
+        "--no_analysis", "-n",
+        action="store_true",
+        help="Skip case analysis step"
+    )
 
-    return config
+    parser.add_argument(
+        "--output_file", "-o",
+        type=str,
+        default="results/final_analysis_results.json",
+        help="Output file path for results (default: results/final_analysis_results.json)"
+    )
 
+    parser.add_argument(
+        "--verbose", "-v",
+        action="store_true",
+        help="Enable verbose logging"
+    )
 
-def initialize_services(config: Dict[str, str]) -> Dict[str, Any]:
-    """Initialize all services with configuration."""
-    logger.info("Initializing services...")
+    return parser
 
-    cache_service = CacheService(config['cache_file'])
-    services = {
-        'prompt_processor': PromptProcessor(),
-        'serp_search': SerpSearchService(config['serp_api_key']),
-        'llm_service': LLMService(config['openai_api_key'], serp_service=SerpSearchService(config['serp_api_key'])),
-        'pdf_downloader': PDFDownloader(cache_service=cache_service),
-        'case_analyzer': CaseAnalyzer(),
-        'result_formatter': ResultFormatter(),
-        'cache_service': cache_service,
-        'pdf_analysis': PDFAnalysisService(openai_api_key=config['openai_api_key'], cache_service=cache_service),
-        'pdf_extractor': PDFExtractor(),
-        'pdf_analyzer': PDFAnalyzer()
-    }
-
-    logger.info("All services initialized successfully")
-    return services
-
-
-async def run_complete_workflow(services: Dict[str, Any], config: Dict[str, Any]) -> Dict[str, Any]:
+async def run_complete_workflow(
+    query: str,
+    max_results: int = 5,
+    download_pdfs: bool = True,
+    perform_analysis: bool = True,
+    output_file: str = "results/final_analysis_results.json",
+    config=None
+) -> Dict[str, Any]:
     """
-    Run the complete legal assistant workflow.
+    Run the complete legal assistant workflow
 
     Args:
-        services: Dictionary of initialized services
-        config: Configuration dictionary
+        query: Search query
+        max_results: Maximum number of results
+        download_pdfs: Whether to download PDFs
+        perform_analysis: Whether to perform case analysis
+        output_file: Output file path
+        config: Configuration object
 
     Returns:
-        Workflow results dictionary
+        Dictionary containing workflow results
     """
-    workflow_results = {
-        'success': False,
-        'steps_completed': [],
-        'errors': [],
-        'start_time': datetime.now().isoformat()
-    }
-
-    try:
         logger.info("Starting complete legal assistant workflow")
 
         # Step 1: Process initial prompt
         logger.info("Step 1: Processing initial prompt")
-        prompt_text = "Find Kenyan court cases with 2-hop litigation processes"
-        try:
-            prompt_result = services['prompt_processor'].process_prompt(prompt_text)
+    prompt_processor = PromptProcessor()
+    prompt_result = prompt_processor.process_prompt(query)
             logger.info(f"✓ Prompt processing completed: {prompt_result}")
-            workflow_results['steps_completed'].append('prompt_processing')
-        except Exception as e:
-            workflow_results['errors'].append(f"Prompt processing failed: {e}")
-            logger.error(f"Prompt processing failed: {e}")
-            return workflow_results
 
         # Step 2: Perform Serp search and LLM analysis
         logger.info("Step 2: Performing Serp search and LLM analysis")
-        try:
-            llm_cases = await services['llm_service'].search_kenyan_cases_with_serp(
-                prompt_result.text,
-                max_results=5
-            )
-
-            if not llm_cases:
-                workflow_results['errors'].append("No cases found by LLMService.")
-                return workflow_results
-
-            logger.info(f"✓ Serp+LLM search completed. Found {len(llm_cases)} cases with 2-hop litigation")
-            workflow_results['steps_completed'].append('serp_llm_search')
-        except Exception as e:
-            workflow_results['errors'].append(f"Serp+LLM search failed: {e}")
-            logger.error(f"Serp+LLM search failed: {e}")
-            return workflow_results
+    llm_service = LLMService(api_key=config.openai_api_key)
+    search_results = await llm_service.search_kenyan_cases_with_serp(
+        search_query=query,
+        max_results=max_results
+    )
+    logger.info(f"✓ Serp+LLM search completed. Found {len(search_results)} cases with 2-hop litigation")
 
         # Step 3: Filter cases ending in appellate courts
         logger.info("Step 3: Filtering cases ending in appellate courts")
-        filtered_cases = []
-        for i, case in enumerate(llm_cases):
-            logger.info(f"Analyzing case {i+1}: {case.get('title', 'Unknown')}")
-            if isinstance(case, dict):
-                appellate_court = case.get('appellate_court', {})
-                trial_reference = case.get('trial_reference', {})
-
+    appellate_cases = []
+    for i, case in enumerate(search_results, 1):
+        logger.info(f"Analyzing case {i}: {case.get('title', 'Unknown')}")
+        appellate_court = case.get('appellate_court', '')
                 if isinstance(appellate_court, dict):
-                    court_name = appellate_court.get('court', '').lower()
-                    logger.info(f"  Appellate court (dict): {court_name}")
-                    if 'court of appeal' in court_name or 'supreme court' in court_name:
-                        filtered_cases.append(case)
-                        logger.info(f"  ✓ Case {i+1} PASSED filter")
-                elif isinstance(appellate_court, str):
-                    court_name = appellate_court.lower()
-                    logger.info(f"  Appellate court (string): {court_name}")
-                    if 'court of appeal' in court_name or 'supreme court' in court_name:
-                        filtered_cases.append(case)
-                        logger.info(f"  ✓ Case {i+1} PASSED filter")
+            appellate_court = appellate_court.get('court', '')
+        appellate_court_lower = appellate_court.lower()
 
-        logger.info(f"✓ Filtering completed. {len(filtered_cases)} cases end in appellate courts")
-        workflow_results['steps_completed'].append('filtering')
+        # Check if case ends in appellate court
+        if any(keyword in appellate_court_lower for keyword in ['court of appeal', 'supreme court']):
+            logger.info(f"  ✓ Case {i} PASSED filter")
+            appellate_cases.append(case)
+        else:
+            logger.info(f"  ✗ Case {i} FAILED filter (appellate court: {appellate_court})")
+
+    logger.info(f"✓ Filtering completed. {len(appellate_cases)} cases end in appellate courts")
 
         # Step 4: Download PDFs
+    if download_pdfs and appellate_cases:
         logger.info("Step 4: Downloading PDFs")
-        try:
-            download_results = await services['pdf_downloader'].download_multiple_cases(filtered_cases)
-            successful_downloads = len([r for r in download_results if r.get('success', False)])
-            logger.info(f"✓ PDF downloads completed. {successful_downloads}/{len(download_results)} successful")
-            workflow_results['steps_completed'].append('pdf_download')
-        except Exception as e:
-            workflow_results['errors'].append(f"PDF download failed: {e}")
-            logger.error(f"PDF download failed: {e}")
-            return workflow_results
+        pdf_downloader = PDFDownloader()
+
+        # Extract URLs for download
+        case_urls = []
+        for case in appellate_cases:
+            appellate_url = case.get('appellate_court', {}).get('url', '')
+            if appellate_url:
+                case_urls.append(appellate_url)
+
+        if case_urls:
+            download_results = await pdf_downloader.download_multiple_cases(case_urls)
+            successful_downloads = sum(1 for result in download_results if result.get('success', False))
+            logger.info(f"✓ PDF downloads completed. {successful_downloads}/{len(case_urls)} successful")
+        else:
+            logger.warning("No URLs found for PDF download")
+            download_results = []
+    else:
+        logger.info("Skipping PDF download")
+        download_results = []
 
         # Step 5: Analyze cases
+    if perform_analysis and appellate_cases:
         logger.info("Step 5: Analyzing cases")
-        try:
-            analysis_results = []
-            for case in filtered_cases:
-                if isinstance(case, dict):
-                    analysis_result = await services['case_analyzer'].analyze_case(case)
-                    analysis_results.append(analysis_result)
+        case_analyzer = CaseAnalyzer()
 
-            successful_analyses = len([r for r in analysis_results if r.get('success', False) or r.get('confidence_score', 0) > 0])
-            logger.info(f"✓ Case analysis completed. {successful_analyses}/{len(analysis_results)} successful")
-            workflow_results['steps_completed'].append('case_analysis')
-        except Exception as e:
-            workflow_results['errors'].append(f"Case analysis failed: {e}")
-            logger.error(f"Case analysis failed: {e}")
-            return workflow_results
+        analysis_results = []
+        for case in appellate_cases:
+            case_title = case.get('title', 'Unknown')
+            logger.info(f"Analyzing case: {case_title}")
+            analysis_result = await case_analyzer.analyze_case(case)
+            analysis_results.append(analysis_result)
+            logger.info(f"Case analysis completed for: {case_title}")
+
+        logger.info(f"✓ Case analysis completed. {len(analysis_results)}/{len(appellate_cases)} successful")
+    else:
+        logger.info("Skipping case analysis")
+        analysis_results = []
 
         # Step 6: Process PDFs and perform detailed analysis
+    if perform_analysis and download_results:
         logger.info("Step 6: Processing PDFs and performing detailed analysis")
-        pdf_analysis_results = []
+        pdf_analysis_service = PDFAnalysisService()
 
-        # Get list of downloaded PDFs
-        pdf_dir = Path(config['data_dir']) / "raw"
-        if pdf_dir.exists():
-            pdf_files = list(pdf_dir.glob("*.pdf"))
+        # Find PDF files for analysis
+        pdf_files = []
+        for download_result in download_results:
+            if download_result.get('success', False):
+                pdf_files.extend(download_result.get('pdf_files', []))
+
             logger.info(f"Found {len(pdf_files)} PDF files for detailed analysis")
 
+        analysis_count = 0
             for pdf_file in pdf_files:
-                case_title = pdf_file.stem
-                analysis_result = await services['pdf_analysis'].analyze_pdf_file(
-                    str(pdf_file),
-                    case_title
-                )
-                pdf_analysis_results.append(analysis_result)
+            try:
+                filename = pdf_file.get('filename', '')
+                logger.info(f"Starting PDF analysis for: {filename}")
+                analysis_result = await pdf_analysis_service.analyze_pdf_file(filename)
+                if analysis_result:
+                    analysis_count += 1
+            except Exception as e:
+                logger.error(f"Error analyzing PDF {filename}: {str(e)}")
 
-        successful_pdf_analyses = len([r for r in pdf_analysis_results if r.get('success', False)])
-        logger.info(f"✓ PDF analysis completed. {successful_pdf_analyses}/{len(pdf_analysis_results)} successful")
-        workflow_results['steps_completed'].append('pdf_analysis')
+        logger.info(f"✓ PDF analysis completed. {analysis_count}/{len(pdf_files)} successful")
+    else:
+        logger.info("Skipping PDF analysis")
 
-        # Step 7: Format results
+    # Step 7: Format final results
         logger.info("Step 7: Formatting final results")
+
         final_results = {
-            'workflow_summary': {
-                'total_cases_found': len(llm_cases),
-                'cases_with_2hop_litigation': len(llm_cases),
-                'cases_ending_in_appellate': len(filtered_cases),
-                'pdfs_downloaded': successful_downloads,
-                'cases_analyzed': successful_analyses,
-                'pdfs_analyzed': successful_pdf_analyses,
-                'steps_completed': workflow_results['steps_completed']
-            },
-            'llm_search_results': llm_cases,
-            'filtered_cases': filtered_cases,
-            'download_results': download_results,
-            'case_analysis': analysis_results,
-            'pdf_analysis': pdf_analysis_results
+        "workflow_summary": {
+            "query": query,
+            "max_results_requested": max_results,
+            "total_cases_found": len(search_results),
+            "appellate_cases": len(appellate_cases),
+            "pdfs_downloaded": len([r for r in download_results if r.get('success', False)]),
+            "cases_analyzed": len(analysis_results),
+            "timestamp": datetime.now().isoformat()
+        },
+        "search_results": search_results,
+        "appellate_cases": appellate_cases,
+        "download_results": download_results,
+        "analysis_results": analysis_results
         }
 
         # Save results
-        results_file = Path(config['results_dir']) / "final_analysis_results.json"
-        results_file.parent.mkdir(exist_ok=True)
-
-        with open(results_file, 'w', encoding='utf-8') as f:
+    os.makedirs(os.path.dirname(output_file), exist_ok=True)
+    with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(final_results, f, indent=2, ensure_ascii=False, default=str)
 
-        logger.info(f"✓ Results saved to {results_file}")
-        workflow_results['success'] = True
-        workflow_results['final_results'] = final_results
+    logger.info(f"✓ Results saved to {output_file}")
 
-    except Exception as e:
-        workflow_results['errors'].append(f"Workflow error: {e}")
-        logger.error(f"Workflow error: {e}")
+    return final_results
 
-    workflow_results['end_time'] = datetime.now().isoformat()
-    return workflow_results
-
-
-def main():
-    """Main entry point for the legal assistant backend."""
+async def main():
+    """Main entry point"""
     logger.info("Legal Assistant Backend starting...")
 
+    # Parse command line arguments
+    parser = setup_argument_parser()
+    args = parser.parse_args()
+
+    # Configure logging level
+    if args.verbose:
+        logger.remove()
+        logger.add("logs/legal_assistant.log", rotation="1 day", retention="7 days", level="DEBUG")
+        logger.add(lambda msg: print(msg), level="DEBUG")
+
     # Load configuration
-    config = load_config()
+    try:
+        config = get_config()
     logger.info("Configuration loaded successfully")
+    except Exception as e:
+        logger.error(f"Failed to load configuration: {e}")
+        return
 
     # Initialize services
     logger.info("Initializing services...")
-    cache_service = CacheService(config['cache_file'])
-    services = {
-        'prompt_processor': PromptProcessor(),
-        'serp_search': SerpSearchService(config['serp_api_key']),
-        'llm_service': LLMService(config['openai_api_key'], serp_service=SerpSearchService(config['serp_api_key'])),
-        'pdf_downloader': PDFDownloader(cache_service=cache_service),
-        'case_analyzer': CaseAnalyzer(),
-        'result_formatter': ResultFormatter(),
-        'cache_service': cache_service,
-        'pdf_analysis': PDFAnalysisService(openai_api_key=config['openai_api_key'], cache_service=cache_service),
-        'pdf_extractor': PDFExtractor(),
-        'pdf_analyzer': PDFAnalyzer()
-    }
-    logger.info("All services initialized successfully")
+    try:
+        # Initialize cache service
+        cache_service = CacheService()
+        logger.info("Cache service initialized")
 
-    # Run the complete workflow
+        # Initialize other services
+        prompt_processor = PromptProcessor()
+        llm_service = LLMService(api_key=config.openai_api_key)
+        pdf_downloader = PDFDownloader()
+        case_analyzer = CaseAnalyzer()
+        pdf_analysis_service = PDFAnalysisService()
+
+    logger.info("All services initialized successfully")
+    except Exception as e:
+        logger.error(f"Failed to initialize services: {e}")
+        return
+
+    # Start complete workflow
     logger.info("Starting complete legal assistant workflow")
     try:
-        results = asyncio.run(run_complete_workflow(services, config))
+        results = await run_complete_workflow(
+            query=args.query,
+            max_results=args.max_results,
+            download_pdfs=args.download_pdfs,
+            perform_analysis=not args.no_analysis,
+            output_file=args.output_file,
+            config=config
+        )
 
-        if results['success']:
             logger.info("=== WORKFLOW COMPLETED SUCCESSFULLY ===")
-            logger.info(f"Steps completed: {results['steps_completed']}")
-            logger.info(f"Final results saved to: {config['results_dir']}/final_analysis_results.json")
-        else:
-            logger.error("=== WORKFLOW FAILED ===")
-            logger.error(f"Errors: {results['errors']}")
+        logger.info(f"Steps completed: {list(results.keys())}")
+        logger.info(f"Final results saved to: {args.output_file}")
 
     except Exception as e:
-        logger.error("=== WORKFLOW FAILED ===")
-        logger.error(f"Error: {e}")
-
+        logger.error(f"Workflow failed: {e}")
+        raise
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
