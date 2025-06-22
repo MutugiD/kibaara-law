@@ -4,9 +4,8 @@ This document tracks the major refactoring effort to move from a static, proof-o
 
 ## Completed Tasks
 
-- [x] Initial FastAPI and React project setup.
+- [x] Initial FastAPI project setup.
 - [x] Deployed and tested initial MVP on Azure.
-- [x] Fixed all frontend compilation and rendering issues.
 - [x] Aligned on new application architecture and UI/UX plan.
 - [x] **Phase 1: Backend Refactor for Dynamic Case Management**
     - [x] Integrated SQLAlchemy with a SQLite database.
@@ -18,54 +17,56 @@ This document tracks the major refactoring effort to move from a static, proof-o
 
 ## In Progress Tasks
 
-- [ ] **Phase 2: Frontend Refactor for New UI/UX**
+- [ ] **Phase 2: Frontend Rebuild with Next.js & Tailwind CSS**
+    - [ ] Bootstrap new Next.js application in `frontend` directory.
+    - [ ] Create a new UI layout with Tailwind CSS.
+    - [ ] Implement the new two-option upload page.
+    - [ ] Implement the cases dashboard to list all cases.
+    - [ ] Implement download logic for the comprehensive summary (pending backend endpoint).
 
 ## Future Tasks
 
+- [ ] **Backend Enhancement**
+    - [ ] Create a new endpoint (`/api/v1/cases/{id}/analysis`) to run the `CaseAnalyzer` service.
+    - [ ] Ensure the new endpoint returns a comprehensive summary.
+    - [ ] Modify the `analyze` button on the frontend to call this new endpoint.
 - [ ] Implement user authentication and authorization.
 - [ ] Add comprehensive logging and error monitoring.
-- [ ] Implement on-demand analysis background tasks.
 
 ## Implementation Plan
 
-### Phase 1: Backend (Completed)
+### Phase 2: Frontend (New Plan: Next.js/Tailwind)
 
-The backend has been transitioned to a dynamic, database-driven system.
+The goal is to build a modern, client-side rendered UI that communicates directly with the FastAPI backend.
 
-**Files Created/Modified in Phase 1:**
-- `backend/database.py` - ✅
-- `backend/models/case_models.py` - ✅
-- `backend/services/case_service.py` - ✅
-- `backend/api/routers/cases.py` - ✅
-- `backend/api/main.py` - ✅
-- `start_server.sh` - ✅
-
-### Phase 2: Frontend (In Progress)
-
-The goal is to build a new user interface that supports the dynamic backend functionality.
-
-1.  **New Navigation & Layout:**
-    -   Create a main `Layout.tsx` component with a persistent sidebar.
-    -   Implement the sidebar with navigation links to the new pages.
-    -   Update `App.tsx` to use the new layout and routing structure.
-2.  **Dashboard Page:**
-    -   Build a new dashboard page (`/dashboard`).
-    -   Fetch and display the list of all cases from the `GET /api/cases` endpoint.
-    -   Display cases in a table with status and action buttons.
-3.  **Upload Page:**
-    -   Build a new page (`/upload`) for file uploads.
-    -   Implement a file uploader component that sends files to the `POST /api/cases/upload` endpoint.
-4.  **Integrate Search:**
-    -   Keep the existing search UI but update it to work with the new backend if necessary (TBD).
+1.  **Project Setup:**
+    -   Use `create-next-app` to initialize the project with Tailwind CSS.
+    -   Configure environment variables for the backend URL (`NEXT_PUBLIC_API_URL`).
+2.  **UI Components:**
+    -   Create a main `Layout` component.
+    -   Build a `Navbar` for navigation.
+3.  **Upload Page (`/upload`):**
+    -   Design a UI with two distinct upload options:
+        1.  **Case Law Upload**: For single documents containing both ruling and pleadings. Sets `document_type` to `CASE_LAW`.
+        2.  **Pleadings Upload**: For separate pleadings documents. Sets `document_type` to `PLEADINGS`.
+    -   Implement API calls to `POST /api/v1/cases/upload`.
+4.  **Dashboard Page (`/dashboard`):**
+    -   Fetch and display all cases from `GET /api/v1/cases/`.
+    -   Display case status (`Uploaded`, `Processing`, `Completed`, `Failed`).
+    -   Include a button to trigger analysis (will call the new backend endpoint when ready).
+    -   Include a button to download the summary (will be enabled when analysis is complete).
 
 ### Relevant Files
 
 **Files to be Created/Modified in Phase 2:**
-- `frontend/src/components/common/Layout.tsx`
-- `frontend/src/components/common/Sidebar.tsx`
-- `frontend/src/components/dashboard/DashboardPage.tsx`
-- `frontend/src/components/upload/UploadPage.tsx`
-- `frontend/src/App.tsx` (for routing)
+- `frontend/src/app/layout.tsx`
+- `frontend/src/app/page.tsx` (will be the dashboard)
+- `frontend/src/app/upload/page.tsx`
+- `frontend/src/components/Navbar.tsx`
+- `frontend/src/components/UploadForm.tsx`
+- `frontend/src/services/api.ts` (for client-side API calls)
+- `frontend/tailwind.config.ts`
+- `frontend/postcss.config.js`
 - `TASKS.md` - This file.
 
 # Legal Assistant Backend Implementation
@@ -552,3 +553,153 @@ The frontend has been successfully implemented with:
 2. Implement case details view
 3. Add raw data view functionality
 4. Implement user case upload feature
+
+# Legal Assistant Application - Task Management
+
+## Current Status: FastAPI Backend Complete ✅
+
+The FastAPI backend is now fully functional with the following working endpoints:
+- `POST /api/v1/cases/upload` - Upload PDF files with document type
+- `POST /api/v1/cases/analyze/{filename}` - Analyze uploaded PDF files
+- `GET /api/v1/cases/download/{filename}` - Download analysis results as text file
+- `GET /api/v1/cases/` - Get all cases with their status and analysis results
+
+## Phase 5: Frontend Integration (Next Priority)
+
+### Task 11: Update API Service Layer
+- [ ] **Update `frontend/src/services/api.ts`**
+  - [ ] Replace legacy search/download endpoints with new working endpoints
+  - [ ] Add new functions for upload, analyze, and download operations
+  - [ ] Update API base URL configuration
+  - [ ] Add proper error handling for new endpoints
+  - [ ] Add file upload with FormData support
+  - [ ] Add download functionality with blob handling
+
+### Task 12: Update TypeScript Types
+- [ ] **Update `frontend/src/types/api.ts`**
+  - [ ] Add `Case` interface matching FastAPI `CaseSchema`
+  - [ ] Add `DocumentType` enum matching backend
+  - [ ] Add `CaseStatus` enum matching backend
+  - [ ] Add `AnalysisResults` interface for extracted text
+  - [ ] Remove unused legacy types (SearchRequest, SearchResponse, etc.)
+  - [ ] Add upload response types
+  - [ ] Add analysis request/response types
+
+### Task 13: Update Upload Component
+- [ ] **Enhance `frontend/src/components/upload/UploadPage.tsx`**
+  - [ ] Add document type selection dropdown
+  - [ ] Add file validation (PDF only)
+  - [ ] Add upload progress indicator
+  - [ ] Add success/error feedback
+  - [ ] Add automatic case list refresh after upload
+  - [ ] Add drag-and-drop file upload support
+
+### Task 14: Update Dashboard Component
+- [ ] **Enhance `frontend/src/components/dashboard/DashboardPage.tsx`**
+  - [ ] Display all uploaded cases with their status
+  - [ ] Add "Analyze" button for each uploaded case
+  - [ ] Add "Download" button for completed analyses
+  - [ ] Add real-time status updates
+  - [ ] Add case filtering and sorting
+  - [ ] Add case deletion functionality
+  - [ ] Add bulk operations (analyze multiple, download multiple)
+
+### Task 15: Add Analysis Management
+- [ ] **Create new component: `frontend/src/components/analysis/AnalysisManager.tsx`**
+  - [ ] Show analysis progress for each case
+  - [ ] Add retry functionality for failed analyses
+  - [ ] Add analysis status indicators (Uploaded, Processing, Completed, Failed)
+  - [ ] Add analysis history and logs
+  - [ ] Add analysis cancellation functionality
+
+### Task 16: Add Download Management
+- [ ] **Create new component: `frontend/src/components/download/DownloadManager.tsx`**
+  - [ ] Handle file downloads with proper blob handling
+  - [ ] Add download progress indicators
+  - [ ] Add download history
+  - [ ] Add file preview functionality
+  - [ ] Add download format options (txt, docx in future)
+
+### Task 17: Update Navigation and Layout
+- [ ] **Update `frontend/src/components/common/Layout.tsx`**
+  - [ ] Add navigation for new analysis workflow
+  - [ ] Update sidebar with new menu items
+  - [ ] Add breadcrumb navigation
+  - [ ] Add user feedback notifications
+
+### Task 18: Add State Management
+- [ ] **Update `frontend/src/store/`**
+  - [ ] Add cases slice for managing uploaded cases
+  - [ ] Add analysis slice for managing analysis status
+  - [ ] Add download slice for managing downloads
+  - [ ] Add proper loading states and error handling
+  - [ ] Add optimistic updates for better UX
+
+### Task 19: Add Error Handling and Validation
+- [ ] **Create error boundary components**
+  - [ ] Add global error handling
+  - [ ] Add form validation for uploads
+  - [ ] Add API error message display
+  - [ ] Add retry mechanisms for failed operations
+  - [ ] Add offline detection and handling
+
+### Task 20: Testing and Quality Assurance
+- [ ] **Add comprehensive testing**
+  - [ ] Unit tests for API service functions
+  - [ ] Integration tests for component-API interaction
+  - [ ] E2E tests for complete workflow
+  - [ ] Error scenario testing
+  - [ ] Performance testing for large file uploads
+
+## Phase 6: Advanced Features (Future)
+
+### Task 21: Enhanced Analysis Features
+- [ ] **Add AI-powered analysis integration**
+  - [ ] Integrate LLM service for comprehensive summaries
+  - [ ] Add structured analysis results display
+  - [ ] Add analysis comparison features
+  - [ ] Add analysis export in multiple formats
+
+### Task 22: User Experience Enhancements
+- [ ] **Add advanced UX features**
+  - [ ] Add keyboard shortcuts
+  - [ ] Add bulk operations UI
+  - [ ] Add advanced filtering and search
+  - [ ] Add user preferences and settings
+  - [ ] Add dark mode support
+
+## Implementation Notes
+
+### API Integration Strategy:
+1. **Replace legacy endpoints** - Remove unused search/download endpoints
+2. **Add new endpoints** - Implement upload, analyze, download workflow
+3. **Update types** - Ensure TypeScript types match FastAPI schemas
+4. **Add proper error handling** - Handle network errors, validation errors
+5. **Add loading states** - Show progress for long-running operations
+
+### Component Architecture:
+- **UploadPage**: File upload with document type selection
+- **DashboardPage**: Case management and status overview
+- **AnalysisManager**: Analysis progress and control
+- **DownloadManager**: Download handling and file management
+- **Common components**: Layout, navigation, error boundaries
+
+### State Management:
+- **Cases slice**: Manage uploaded cases and their status
+- **Analysis slice**: Manage analysis progress and results
+- **Download slice**: Manage download operations and history
+
+### Error Handling:
+- **API errors**: Network failures, validation errors, server errors
+- **File errors**: Invalid files, upload failures, analysis failures
+- **User errors**: Invalid input, missing required fields
+
+## Next Steps:
+1. Start with Task 11 (Update API Service Layer)
+2. Update TypeScript types (Task 12)
+3. Enhance existing components (Tasks 13-14)
+4. Add new components (Tasks 15-16)
+5. Update navigation and state management (Tasks 17-18)
+6. Add comprehensive testing (Task 20)
+
+This plan ensures a complete integration of the working FastAPI backend with a modern, user-friendly React frontend.
