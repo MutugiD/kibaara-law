@@ -1,0 +1,122 @@
+{
+  "success": true,
+  "case_title": "194677_194677_standard",
+  "analysis_type": "comprehensive_summary",
+  "trial_court_ruling": {
+    "court_info": {
+      "court_name": "Thika Chief Magistrate's Court",
+      "judges": "Hon. Onsarigo (Resident Magistrate)",
+      "case_number": "CMCC No. 1219 of 2010",
+      "decision_date": "27th January 2016"
+    },
+    "key_arguments": {
+      "plaintiff_arguments": "The plaintiff argued that the defendant was the owner of the vehicle at the time of the accident and was liable for the injuries sustained.",
+      "defendant_arguments": "The defendant contended that it was not the owner of the vehicle at the time of the accident, having sold it to a third party in 1995.",
+      "legal_grounds": "The trial court applied principles of negligence and vicarious liability.",
+      "evidence_presented": "The plaintiff presented a copy of records indicating the defendant as the vehicle owner, while the defendant presented documentary evidence of the vehicle's sale."
+    },
+    "findings": {
+      "factual_findings": "The court found that the defendant was the owner of the vehicle at the time of the accident.",
+      "legal_findings": "The court concluded that the defendant was vicariously liable for the driver's negligence.",
+      "evidence_evaluation": "The court relied on the copy of records produced by the plaintiff to establish vehicle ownership.",
+      "witness_credibility": "The court found the plaintiff's testimony credible, particularly regarding the accident and injuries sustained."
+    },
+    "decision": {
+      "primary_outcome": "The court found the defendant liable for the accident.",
+      "orders_made": "The defendant was ordered to pay Kshs 800,000 as general damages and Kshs 63,860 as special damages.",
+      "relief_granted": "General damages of Kshs 800,000 and special damages of Kshs 63,860 were awarded.",
+      "costs_awarded": "Not specifically mentioned in the document.",
+      "reasoning": "The court reasoned that the defendant, as the registered owner, was liable for the driver's negligence."
+    },
+    "legal_principles": {
+      "statutes_interpreted": "Not specifically mentioned in the document.",
+      "case_law_applied": "The court referenced Selle v Associated Motor Boat Co. [1968] EA 123.",
+      "new_principles": "Not mentioned in the document.",
+      "legal_doctrines": "Vicarious liability and negligence."
+    }
+  },
+  "appellate_court_ruling": {
+    "court_info": {
+      "court_name": "Not mentioned in document",
+      "judges": "Not mentioned in document",
+      "case_number": "Not mentioned in document",
+      "decision_date": "Not mentioned in document"
+    },
+    "grounds_of_appeal": {
+      "primary_grounds": "The appellant challenged the trial court's findings on ownership and liability.",
+      "legal_basis": "The appellant argued based on principles of ownership and liability.",
+      "arguments_presented": "The appellant contended that it was not the owner of the vehicle at the time of the accident.",
+      "evidence_relied_upon": "Documentary evidence showing the sale of the vehicle."
+    },
+    "appellate_analysis": {
+      "standard_of_review": "Not mentioned in document",
+      "deference_to_trial": "Not mentioned in document",
+      "legal_reasoning": "Not mentioned in document",
+      "constitutional_analysis": "Not mentioned in document"
+    },
+    "appellate_decision": {
+      "primary_outcome": "Not mentioned in document",
+      "orders_made": "Not mentioned in document",
+      "relief_granted": "Not mentioned in document",
+      "costs_awarded": "Not mentioned in document",
+      "remittal": "Not mentioned in document"
+    },
+    "comparison_with_trial": {
+      "areas_of_agreement": "Not mentioned in document",
+      "areas_of_disagreement": "Not mentioned in document",
+      "errors_corrected": "Not mentioned in document",
+      "legal_principles_clarified": "Not mentioned in document",
+      "factual_findings_upheld": "Not mentioned in document",
+      "factual_findings_overturned": "Not mentioned in document",
+      "relief_modified": "Not mentioned in document"
+    },
+    "legal_principles": {
+      "new_principles": "Not mentioned in document",
+      "statutes_interpreted": "Not mentioned in document",
+      "precedent_setting": "Not mentioned in document",
+      "constitutional_principles": "Not mentioned in document"
+    }
+  },
+  "summary": {
+    "case_overview": {
+      "subject_matter": "Negligence and vicarious liability in a road traffic accident.",
+      "key_legal_issues": "Ownership of the vehicle and liability for the accident.",
+      "significance": "The case addresses the principles of vicarious liability and ownership disputes.",
+      "litigation_type": "Civil litigation"
+    },
+    "parties_and_procedure": {
+      "parties": "Kenya Power and Lighting Company Limited (Appellant/Defendant), Patrick Njane Mbugua (Respondent/Plaintiff), William Macharia (2nd Respondent).",
+      "procedural_timeline": "Accident on 25th November 2007, trial court judgment on 27th January 2016, appeal filed subsequently.",
+      "legal_representatives": "Not specifically mentioned in the document."
+    },
+    "factual_background": {
+      "chronological_events": "Accident occurred on 25th November 2007; trial court judgment delivered on 27th January 2016.",
+      "key_factual_disputes": "Ownership of the vehicle at the time of the accident.",
+      "background_circumstances": "The 1st respondent was a passenger in the vehicle when the accident occurred due to alleged negligent driving."
+    },
+    "legal_analysis": {
+      "key_legal_principles": "Vicarious liability and negligence.",
+      "precedent_value": "The case reinforces the application of vicarious liability in ownership disputes.",
+      "impact_on_jurisprudence": "The case contributes to the body of law on vehicle ownership and liability.",
+      "novel_interpretations": "Not mentioned in the document."
+    },
+    "comparative_analysis": {
+      "alignment_departure": "Not mentioned in document",
+      "key_differences": "Not mentioned in document",
+      "procedural_lessons": "Not mentioned in document",
+      "impact_of_appellate": "Not mentioned in document"
+    },
+    "case_metadata": {
+      "trial_case_number": "CMCC No. 1219 of 2010",
+      "appellate_case_number": "Not mentioned in document",
+      "trial_date": "27th January 2016",
+      "appellate_date": "Not mentioned in document",
+      "courts_involved": "Thika Chief Magistrate's Court",
+      "judges_involved": "Hon. Onsarigo (Resident Magistrate)",
+      "legal_areas": "Tort law, property law",
+      "citation": "Kenya Power And Lighting Company Limited v Patrick Njane Mbugua another [2020] eKLR"
+    }
+  },
+  "raw_response": "```json\n{\n  \"success\": true,\n  \"case_title\": \"Kenya Power And Lighting Company Limited v Patrick Njane Mbugua another [2020] eKLR\",\n  \"analysis_type\": \"comprehensive_summary\",\n  \"trial_court_ruling\": {\n    \"court_info\": {\n      \"court_name\": \"Thika Chief Magistrate's Court\",\n      \"judges\": \"Hon. Onsarigo (Resident Magistrate)\",\n      \"case_number\": \"CMCC No. 1219 of 2010\",\n      \"decision_date\": \"27th January 2016\"\n    },\n    \"key_arguments\": {\n      \"plaintiff_arguments\": \"The plaintiff argued that the defendant was the owner of the vehicle at the time of the accident and was liable for the injuries sustained.\",\n      \"defendant_arguments\": \"The defendant contended that it was not the owner of the vehicle at the time of the accident, having sold it to a third party in 1995.\",\n      \"legal_grounds\": \"The trial court applied principles of negligence and vicarious liability.\",\n      \"evidence_presented\": \"The plaintiff presented a copy of records indicating the defendant as the vehicle owner, while the defendant presented documentary evidence of the vehicle's sale.\"\n    },\n    \"findings\": {\n      \"factual_findings\": \"The court found that the defendant was the owner of the vehicle at the time of the accident.\",\n      \"legal_findings\": \"The court concluded that the defendant was vicariously liable for the driver's negligence.\",\n      \"evidence_evaluation\": \"The court relied on the copy of records produced by the plaintiff to establish vehicle ownership.\",\n      \"witness_credibility\": \"The court found the plaintiff's testimony credible, particularly regarding the accident and injuries sustained.\"\n    },\n    \"decision\": {\n      \"primary_outcome\": \"The court found the defendant liable for the accident.\",\n      \"orders_made\": \"The defendant was ordered to pay Kshs 800,000 as general damages and Kshs 63,860 as special damages.\",\n      \"relief_granted\": \"General damages of Kshs 800,000 and special damages of Kshs 63,860 were awarded.\",\n      \"costs_awarded\": \"Not specifically mentioned in the document.\",\n      \"reasoning\": \"The court reasoned that the defendant, as the registered owner, was liable for the driver's negligence.\"\n    },\n    \"legal_principles\": {\n      \"statutes_interpreted\": \"Not specifically mentioned in the document.\",\n      \"case_law_applied\": \"The court referenced Selle v Associated Motor Boat Co. [1968] EA 123.\",\n      \"new_principles\": \"Not mentioned in the document.\",\n      \"legal_doctrines\": \"Vicarious liability and negligence.\"\n    }\n  },\n  \"appellate_court_ruling\": {\n    \"court_info\": {\n      \"court_name\": \"Not mentioned in document\",\n      \"judges\": \"Not mentioned in document\",\n      \"case_number\": \"Not mentioned in document\",\n      \"decision_date\": \"Not mentioned in document\"\n    },\n    \"grounds_of_appeal\": {\n      \"primary_grounds\": \"The appellant challenged the trial court's findings on ownership and liability.\",\n      \"legal_basis\": \"The appellant argued based on principles of ownership and liability.\",\n      \"arguments_presented\": \"The appellant contended that it was not the owner of the vehicle at the time of the accident.\",\n      \"evidence_relied_upon\": \"Documentary evidence showing the sale of the vehicle.\"\n    },\n    \"appellate_analysis\": {\n      \"standard_of_review\": \"Not mentioned in document\",\n      \"deference_to_trial\": \"Not mentioned in document\",\n      \"legal_reasoning\": \"Not mentioned in document\",\n      \"constitutional_analysis\": \"Not mentioned in document\"\n    },\n    \"appellate_decision\": {\n      \"primary_outcome\": \"Not mentioned in document\",\n      \"orders_made\": \"Not mentioned in document\",\n      \"relief_granted\": \"Not mentioned in document\",\n      \"costs_awarded\": \"Not mentioned in document\",\n      \"remittal\": \"Not mentioned in document\"\n    },\n    \"comparison_with_trial\": {\n      \"areas_of_agreement\": \"Not mentioned in document\",\n      \"areas_of_disagreement\": \"Not mentioned in document\",\n      \"errors_corrected\": \"Not mentioned in document\",\n      \"legal_principles_clarified\": \"Not mentioned in document\",\n      \"factual_findings_upheld\": \"Not mentioned in document\",\n      \"factual_findings_overturned\": \"Not mentioned in document\",\n      \"relief_modified\": \"Not mentioned in document\"\n    },\n    \"legal_principles\": {\n      \"new_principles\": \"Not mentioned in document\",\n      \"statutes_interpreted\": \"Not mentioned in document\",\n      \"precedent_setting\": \"Not mentioned in document\",\n      \"constitutional_principles\": \"Not mentioned in document\"\n    }\n  },\n  \"summary\": {\n    \"case_overview\": {\n      \"subject_matter\": \"Negligence and vicarious liability in a road traffic accident.\",\n      \"key_legal_issues\": \"Ownership of the vehicle and liability for the accident.\",\n      \"significance\": \"The case addresses the principles of vicarious liability and ownership disputes.\",\n      \"litigation_type\": \"Civil litigation\"\n    },\n    \"parties_and_procedure\": {\n      \"parties\": \"Kenya Power and Lighting Company Limited (Appellant/Defendant), Patrick Njane Mbugua (Respondent/Plaintiff), William Macharia (2nd Respondent).\",\n      \"procedural_timeline\": \"Accident on 25th November 2007, trial court judgment on 27th January 2016, appeal filed subsequently.\",\n      \"legal_representatives\": \"Not specifically mentioned in the document.\"\n    },\n    \"factual_background\": {\n      \"chronological_events\": \"Accident occurred on 25th November 2007; trial court judgment delivered on 27th January 2016.\",\n      \"key_factual_disputes\": \"Ownership of the vehicle at the time of the accident.\",\n      \"background_circumstances\": \"The 1st respondent was a passenger in the vehicle when the accident occurred due to alleged negligent driving.\"\n    },\n    \"legal_analysis\": {\n      \"key_legal_principles\": \"Vicarious liability and negligence.\",\n      \"precedent_value\": \"The case reinforces the application of vicarious liability in ownership disputes.\",\n      \"impact_on_jurisprudence\": \"The case contributes to the body of law on vehicle ownership and liability.\",\n      \"novel_interpretations\": \"Not mentioned in the document.\"\n    },\n    \"comparative_analysis\": {\n      \"alignment_departure\": \"Not mentioned in document\",\n      \"key_differences\": \"Not mentioned in document\",\n      \"procedural_lessons\": \"Not mentioned in document\",\n      \"impact_of_appellate\": \"Not mentioned in document\"\n    },\n    \"case_metadata\": {\n      \"trial_case_number\": \"CMCC No. 1219 of 2010\",\n      \"appellate_case_number\": \"Not mentioned in document\",\n      \"trial_date\": \"27th January 2016\",\n      \"appellate_date\": \"Not mentioned in document\",\n      \"courts_involved\": \"Thika Chief Magistrate's Court\",\n      \"judges_involved\": \"Hon. Onsarigo (Resident Magistrate)\",\n      \"legal_areas\": \"Tort law, property law\",\n      \"citation\": \"Kenya Power And Lighting Company Limited v Patrick Njane Mbugua another [2020] eKLR\"\n    }\n  },\n  \"timestamp\": \"2023-10-06T12:00:00Z\"\n}\n```",
+  "timestamp": "2025-06-21 19:13:37"
+}

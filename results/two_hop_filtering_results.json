@@ -1,0 +1,169 @@
+{
+  "total_cases": 5,
+  "filtered_cases": 5,
+  "all_cases": [
+    {
+      "title": "Civil Appeal 232 of 2016 - Nairobi",
+      "appellate_court": {
+        "court": "Court of Appeal",
+        "case_number": "Civil Appeal 232 of 2016",
+        "date": "Not specified",
+        "url": "https://kenyalaw.org/caselaw/cases/view/194677/"
+      },
+      "trial_reference": {
+        "court": "High Court",
+        "case_number": "Not specified",
+        "date": "Not specified"
+      },
+      "description": "The appellate court reviewed the findings of a trial court regarding the award of damages.",
+      "confidence": "Medium"
+    },
+    {
+      "title": "Civil Appeal 193 of 2017",
+      "appellate_court": {
+        "court": "Court of Appeal",
+        "case_number": "Civil Appeal 193 of 2017",
+        "date": "Not specified",
+        "url": "https://kenyalaw.org/caselaw/cases/view/253591/"
+      },
+      "trial_reference": {
+        "court": "High Court",
+        "case_number": "Succession Cause no. 66 of 2014 and Succession Cause no. 7 of 1996",
+        "date": "Not specified"
+      },
+      "description": "This appeal is based on two succession causes initially handled by the High Court.",
+      "confidence": "Medium"
+    },
+    {
+      "title": "Civil Appeal 12 of 2022",
+      "appellate_court": {
+        "court": "High Court",
+        "case_number": "Civil Appeal 12 of 2022",
+        "date": "Not specified",
+        "url": "https://kenyalaw.org/caselaw/cases/view/282235/index.php?id=3479"
+      },
+      "trial_reference": {
+        "court": "Magistrate's Court",
+        "case_number": "Mutomo PMCC NO. E007 OF 2021",
+        "date": "8th June 2022"
+      },
+      "description": "The appeal was from a judgment delivered by the Senior Resident Magistrate.",
+      "confidence": "High"
+    },
+    {
+      "title": "CM v SWA [2019] KEHC 1900 (KLR) - Nairobi",
+      "appellate_court": {
+        "court": "High Court",
+        "case_number": "KEHC 1900",
+        "date": "7th November 2019",
+        "url": "https://new.kenyalaw.org/akn/ke/judgment/kehc/2019/1900/eng@2019-11-07"
+      },
+      "trial_reference": {
+        "court": "Children's Court",
+        "case_number": "Not specified",
+        "date": "21st February 2018"
+      },
+      "description": "The appellant sought to set aside the judgment of the Children's Court.",
+      "confidence": "High"
+    },
+    {
+      "title": "Mwangi v Republic (Criminal Appeal 48 of 2019) [2023]",
+      "appellate_court": {
+        "court": "High Court",
+        "case_number": "Criminal Appeal 48 of 2019",
+        "date": "20th April 2023",
+        "url": "https://new.kenyalaw.org/akn/ke/judgment/kehc/2023/3262/eng@2023-04-20"
+      },
+      "trial_reference": {
+        "court": "Magistrate's Court",
+        "case_number": "Not specified",
+        "date": "Not specified"
+      },
+      "description": "The appellant was charged with the offence of defilement and appealed the trial court's decision.",
+      "confidence": "Medium"
+    }
+  ],
+  "filtered_cases_list": [
+    {
+      "title": "Civil Appeal 232 of 2016 - Nairobi",
+      "appellate_court": {
+        "court": "Court of Appeal",
+        "case_number": "Civil Appeal 232 of 2016",
+        "date": "Not specified",
+        "url": "https://kenyalaw.org/caselaw/cases/view/194677/"
+      },
+      "trial_reference": {
+        "court": "High Court",
+        "case_number": "Not specified",
+        "date": "Not specified"
+      },
+      "description": "The appellate court reviewed the findings of a trial court regarding the award of damages.",
+      "confidence": "Medium"
+    },
+    {
+      "title": "Civil Appeal 193 of 2017",
+      "appellate_court": {
+        "court": "Court of Appeal",
+        "case_number": "Civil Appeal 193 of 2017",
+        "date": "Not specified",
+        "url": "https://kenyalaw.org/caselaw/cases/view/253591/"
+      },
+      "trial_reference": {
+        "court": "High Court",
+        "case_number": "Succession Cause no. 66 of 2014 and Succession Cause no. 7 of 1996",
+        "date": "Not specified"
+      },
+      "description": "This appeal is based on two succession causes initially handled by the High Court.",
+      "confidence": "Medium"
+    },
+    {
+      "title": "Civil Appeal 12 of 2022",
+      "appellate_court": {
+        "court": "High Court",
+        "case_number": "Civil Appeal 12 of 2022",
+        "date": "Not specified",
+        "url": "https://kenyalaw.org/caselaw/cases/view/282235/index.php?id=3479"
+      },
+      "trial_reference": {
+        "court": "Magistrate's Court",
+        "case_number": "Mutomo PMCC NO. E007 OF 2021",
+        "date": "8th June 2022"
+      },
+      "description": "The appeal was from a judgment delivered by the Senior Resident Magistrate.",
+      "confidence": "High"
+    },
+    {
+      "title": "CM v SWA [2019] KEHC 1900 (KLR) - Nairobi",
+      "appellate_court": {
+        "court": "High Court",
+        "case_number": "KEHC 1900",
+        "date": "7th November 2019",
+        "url": "https://new.kenyalaw.org/akn/ke/judgment/kehc/2019/1900/eng@2019-11-07"
+      },
+      "trial_reference": {
+        "court": "Children's Court",
+        "case_number": "Not specified",
+        "date": "21st February 2018"
+      },
+      "description": "The appellant sought to set aside the judgment of the Children's Court.",
+      "confidence": "High"
+    },
+    {
+      "title": "Mwangi v Republic (Criminal Appeal 48 of 2019) [2023]",
+      "appellate_court": {
+        "court": "High Court",
+        "case_number": "Criminal Appeal 48 of 2019",
+        "date": "20th April 2023",
+        "url": "https://new.kenyalaw.org/akn/ke/judgment/kehc/2023/3262/eng@2023-04-20"
+      },
+      "trial_reference": {
+        "court": "Magistrate's Court",
+        "case_number": "Not specified",
+        "date": "Not specified"
+      },
+      "description": "The appellant was charged with the offence of defilement and appealed the trial court's decision.",
+      "confidence": "Medium"
+    }
+  ],
+  "timestamp": "2025-06-21T19:51:58.900968"
+}

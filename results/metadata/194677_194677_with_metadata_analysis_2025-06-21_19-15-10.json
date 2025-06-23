@@ -1,0 +1,67 @@
+{
+  "success": true,
+  "case_title": "194677_194677_with_metadata",
+  "analysis_type": "metadata_extraction",
+  "metadata": {
+    "BASIC_CASE_INFORMATION": {
+      "case_title": "Kenya Power And Lighting Company Limited v Patrick Njane Mbugua another [2020] eKLR",
+      "citation": "Kenya Power And Lighting Company Limited v Patrick Njane Mbugua another [2020] eKLR",
+      "subject_matter": "The case involved a road traffic accident and the determination of vehicle ownership and liability.",
+      "legal_area": "Civil litigation",
+      "case_type": "Appeal"
+    },
+    "COURT_INFORMATION": {
+      "trial_court": "Thika Chief Magistrate's Court",
+      "appellate_court": "High Court of Kenya at Nairobi",
+      "trial_judges": "Hon. Onsarigo (RM)",
+      "appellate_judges": "Hon. Anthony Ndung'u Kimani"
+    },
+    "CASE_NUMBERS_AND_DATES": {
+      "trial_case_number": "CMCC No. 1219 of 2010",
+      "appellate_case_number": "Civil Appeal 232 of 2016",
+      "trial_date": "27 January 2016",
+      "appellate_date": "04 May 2020",
+      "filing_date": "Not mentioned"
+    },
+    "PARTIES": {
+      "plaintiff_appellant": "Patrick Njane Mbugua",
+      "defendant_respondent": "Kenya Power and Lighting Company Limited",
+      "other_parties": "Not mentioned"
+    },
+    "LEGAL_ISSUES": {
+      "key_legal_issues": "The main legal issues were vehicle ownership and vicarious liability.",
+      "grounds_of_appeal": "The appellate court's decision departed from the trial court's findings on ownership and liability.",
+      "constitutional_issues": "Not mentioned"
+    },
+    "OUTCOMES": {
+      "trial_outcome": "The trial court relied on registration records.",
+      "appellate_outcome": "The appellate decision nullified the trial court's findings on liability and damages.",
+      "relief_granted": "Not mentioned",
+      "costs_awarded": "Not mentioned"
+    },
+    "LEGAL_PRINCIPLES": {
+      "legal_principles_established": "Vicarious liability and the presumption of ownership based on registration records.",
+      "precedent_value": "The case reinforces the need for thorough evaluation of ownership evidence.",
+      "statutes_interpreted": "Not mentioned",
+      "case_law_cited": "Not mentioned"
+    },
+    "PROCEDURAL_ASPECTS": {
+      "procedural_history": "Accident on 25 November 2007; Trial court decision on 27 January 2016; Appellate decision on 04 May 2020.",
+      "procedural_irregularities": "Not mentioned",
+      "applications_made": "Not mentioned"
+    },
+    "EVIDENCE_AND_DOCUMENTATION": {
+      "key_evidence": "The appellate court emphasized the sale agreement.",
+      "expert_evidence": "Not mentioned",
+      "documents_referenced": "Registration records, sale agreement"
+    },
+    "ANALYSIS_INFORMATION": {
+      "analysis_complete": true,
+      "analysis_timestamp": "2023-10-05T12:00:00Z",
+      "pdf_files": "Not mentioned",
+      "analysis_quality": "High"
+    }
+  },
+  "raw_response": "```json\n{\n  \"BASIC_CASE_INFORMATION\": {\n    \"case_title\": \"Kenya Power And Lighting Company Limited v Patrick Njane Mbugua another [2020] eKLR\",\n    \"citation\": \"Kenya Power And Lighting Company Limited v Patrick Njane Mbugua another [2020] eKLR\",\n    \"subject_matter\": \"The case involved a road traffic accident and the determination of vehicle ownership and liability.\",\n    \"legal_area\": \"Civil litigation\",\n    \"case_type\": \"Appeal\"\n  },\n  \"COURT_INFORMATION\": {\n    \"trial_court\": \"Thika Chief Magistrate's Court\",\n    \"appellate_court\": \"High Court of Kenya at Nairobi\",\n    \"trial_judges\": \"Hon. Onsarigo (RM)\",\n    \"appellate_judges\": \"Hon. Anthony Ndung'u Kimani\"\n  },\n  \"CASE_NUMBERS_AND_DATES\": {\n    \"trial_case_number\": \"CMCC No. 1219 of 2010\",\n    \"appellate_case_number\": \"Civil Appeal 232 of 2016\",\n    \"trial_date\": \"27 January 2016\",\n    \"appellate_date\": \"04 May 2020\",\n    \"filing_date\": \"Not mentioned\"\n  },\n  \"PARTIES\": {\n    \"plaintiff_appellant\": \"Patrick Njane Mbugua\",\n    \"defendant_respondent\": \"Kenya Power and Lighting Company Limited\",\n    \"other_parties\": \"Not mentioned\"\n  },\n  \"LEGAL_ISSUES\": {\n    \"key_legal_issues\": \"The main legal issues were vehicle ownership and vicarious liability.\",\n    \"grounds_of_appeal\": \"The appellate court's decision departed from the trial court's findings on ownership and liability.\",\n    \"constitutional_issues\": \"Not mentioned\"\n  },\n  \"OUTCOMES\": {\n    \"trial_outcome\": \"The trial court relied on registration records.\",\n    \"appellate_outcome\": \"The appellate decision nullified the trial court's findings on liability and damages.\",\n    \"relief_granted\": \"Not mentioned\",\n    \"costs_awarded\": \"Not mentioned\"\n  },\n  \"LEGAL_PRINCIPLES\": {\n    \"legal_principles_established\": \"Vicarious liability and the presumption of ownership based on registration records.\",\n    \"precedent_value\": \"The case reinforces the need for thorough evaluation of ownership evidence.\",\n    \"statutes_interpreted\": \"Not mentioned\",\n    \"case_law_cited\": \"Not mentioned\"\n  },\n  \"PROCEDURAL_ASPECTS\": {\n    \"procedural_history\": \"Accident on 25 November 2007; Trial court decision on 27 January 2016; Appellate decision on 04 May 2020.\",\n    \"procedural_irregularities\": \"Not mentioned\",\n    \"applications_made\": \"Not mentioned\"\n  },\n  \"EVIDENCE_AND_DOCUMENTATION\": {\n    \"key_evidence\": \"The appellate court emphasized the sale agreement.\",\n    \"expert_evidence\": \"Not mentioned\",\n    \"documents_referenced\": \"Registration records, sale agreement\"\n  },\n  \"ANALYSIS_INFORMATION\": {\n    \"analysis_complete\": true,\n    \"analysis_timestamp\": \"2023-10-05T12:00:00Z\",\n    \"pdf_files\": \"Not mentioned\",\n    \"analysis_quality\": \"High\"\n  }\n}\n```",
+  "timestamp": "2025-06-21 19:15:10"
+}
